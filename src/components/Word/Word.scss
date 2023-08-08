@@ -1,0 +1,32 @@
+.word-title {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.UpContain,
+.DownContain {
+    background-image: url(~/src/components/pic/pic1.jpg);
+    background: cover;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.UpContain-icon {
+    color: #2abaff;
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+}
+
+.DownContain-icon {
+    color: #2abaff;
+    display: flex;
+    justify-content: center;
+    padding: 190px 100px 10px 100px;
+}

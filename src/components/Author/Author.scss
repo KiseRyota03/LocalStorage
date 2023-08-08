@@ -1,0 +1,103 @@
+.res-wrap {
+    margin-left: 30px;
+}
+
+.res-heading {
+    margin-top: 40px;
+    font-size: 2rem;
+}
+
+.res-text {
+    color: #666;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+
+.res-pass {
+    width: 100%;
+    border: none;
+    padding: 10px 5px;
+
+}
+
+.res-back {
+    text-decoration: none;
+    color: black;
+}
+
+.res-add {
+    border: none;
+    padding: 10px 5px;
+    width: 100%;
+
+
+}
+
+.res-sign {
+    margin-top: 20px;
+}
+.res-sign a {
+    color: #324A59;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.res-arrow {
+    bottom: 200px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #324A59;
+    color:white;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    z-index: 2;
+    position: fixed;
+    cursor: pointer;
+}
+
+.res-nav {
+    bottom: 50px;
+    position: fixed;
+    display: flex;
+}
+
+.res-nav_text {
+    color: #AAA;
+}
+
+.res-nav_click a {
+    text-decoration: none;
+    margin-left: 5px;
+    color: #324A59;
+}
+
+.res-icon {
+    margin-right: 10px;
+    // border-bottom: 0.1px solid #C1C7D0 ;
+    padding: 7px 5px;
+
+}
+
+.res-box {
+    border-bottom: 0.1px solid #C1C7D0 ;
+    width: 80% ;
+    display: flex;
+}
+
+.res-box2 {
+    margin-top: 20px;
+}
+
+.res-icon::after {
+    content: "";
+    position: absolute;
+    border-left: 2px solid #C1C7D0;
+    height: 20px;
+    margin-left: 10px;
+    transform: translateY(-50%);
+    transform: translateX(50%);
+
+}

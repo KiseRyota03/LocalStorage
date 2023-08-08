@@ -1,0 +1,88 @@
+.point-content {
+    width: 100%;    
+    background-color: #2abaff;
+    height: 110px;
+
+}
+
+.point-box {
+    background-color: white;
+    height: 40px;
+    justify-content: space-around;
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    align-items: center;
+    border-radius: 6px;
+
+}
+
+.point-bear {
+    padding-top: 20px;
+}
+.score-text {
+    font-size: 1rem;
+}
+
+.correct-text {
+    font-size: 1rem;
+}
+
+.correct-num {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.score-num {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+    font-weight: 700;
+
+}
+
+.box-icon {
+    color: #ffb827;
+}
+
+.point-img {
+    width: 88%;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.point-contain {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 10px;
+    gap: 15px;
+
+}
+
+.point-item {
+    background-color: white;
+    // border: 20px solid #fff;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 10px;    
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+.point-text {
+    padding: 5px 0px;
+    color: black;
+}
+
+.point-sub {
+    color: black;
+    padding-bottom: 5px;
+}
+.point-item a {
+    text-decoration: none;
+}
