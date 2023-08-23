@@ -12,7 +12,6 @@ import Point from "~/components/Point"
 import Word from "~/components/Word"
 import Check from "~/components/Check"
 
-
 // import DefaultLayout from "~/components/DefaultLayout";
 
 function App() {
@@ -33,7 +32,7 @@ function App() {
           <Route path="/word" element={<Word />} />
           <Route path="/check" element={<Check />} />
 
-
+    
 
         </Routes>
       </div>

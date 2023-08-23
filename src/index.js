@@ -6,15 +6,20 @@ import GlobalStyles from '~/components/GlobalStyles'
 // import Layout from '~/components/Layout';
 // import Register from '~/components/Register';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AuthProvider } from "./components/context/AuthProvider";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
+ 
     <GlobalStyles>
+    <AuthProvider>
       <App />
+      </AuthProvider>
     </GlobalStyles>
+
   </React.StrictMode>
 );
 
