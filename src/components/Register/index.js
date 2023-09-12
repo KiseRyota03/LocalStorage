@@ -20,7 +20,7 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    
+    const [successs, setSuccess] = useState(false);
    
     // const handleSubmit = async (e) => {
     //     if(!email || !password) {
@@ -38,26 +38,66 @@ function Register() {
     
     // app.use(cors());
 
-        const handlePrint = (e) => {
+        const handlePrint = async (e) => {
             e.preventDefault();
-            console.log({email, password})
-            axios.post('http://117.6.133.148:8089/api/v1/login', {
-            headers:{'Access-Control-Allow-Origin': true,
-        },      
+            try {
+            const response = await axios.post('http://117.6.133.148:8089/api/v1/login', 
+            JSON.stringify({email,password}),
+            {
+            headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
             email: email,
             password: password,
-            })
-            .then(result => {
-                console.log(result.data)
-                alert('ok bro')
-            })
-            .catch(error => {
-                console.log(error)
+        }),      
+        }); 
+        setSuccess(true);
+        // console.log("res", response)
+        const Token = response.data.body.token.accessToken;
+        // console.log({Token})
+        localStorage.setItem('accessToken', (Token));
+        console.log(JSON.stringify(response?.data));
+        // console.log(localStorage)
+        // console.log(Token);
+    }
+            catch(error) {
+                console.log(error);
                 alert('error')
-            })
+            }
         }
 
+    // const handlePrint = async (e) => {
+    //     e.preventDefault();
+    //     // console.log({email, password})
+    //     const response = axios.post('http://117.6.133.148:8089/api/v1/login', JSON.stringify({email,password}), 
+    //     {
+    //     headers:{'Content-Type': 'application/json',
+    // },
+    //     body: JSON.stringify({
+    //         email: email,
+    //         password: password,
+    //     })      
+    //     })
+    //     .then(result => {
+    //         setSuccess(true);
+    //         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
+    //         console.log(result.data)
+    //         console.log(localStorage)
+
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //         alert('error')
+    //     })
+    // }
+
     return (
+        <> { successs ? (
+                <Video></Video>
+        ) : (
+
+        
             <div className='res-wrap'>
             <a href="/" className='res-back'>
                 <FontAwesomeIcon icon={faArrowLeft} />
@@ -87,11 +127,10 @@ function Register() {
                 </div>
 
                 <div className="res-box res-box2">
-                    <i className='res-icon' >
 
+                    <i className='res-icon' >
                         <FontAwesomeIcon icon={faLock} />
                     </i>
-
                     <input  
                     placeholder='Password' 
                     className='res-pass' 
@@ -127,7 +166,8 @@ function Register() {
             
             
             </div>
-        
+        )}
+        </>
         
         
 

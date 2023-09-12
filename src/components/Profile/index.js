@@ -122,7 +122,7 @@ function Profile() {
                     <a href='/Video' className='nonActive-icon'>
                         <FontAwesomeIcon icon={faHand} />
                     </a>
-                    <a href='/Message' className='nonActive-icon'>
+                    <a href='/Text' className='nonActive-icon'>
                         <FontAwesomeIcon icon={faMessage} />
                     </a>
                     <a href='/Lesson' className='nonActive-icon'>
