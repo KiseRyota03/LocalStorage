@@ -61,7 +61,19 @@
     justify-content: center;
     display: flex;
     padding-top: 520px ;
+}
+
+.camera_button {
     color: #1789BA;
+    background-color: white;
+    padding: 5px 10px;
+    border: #333;
+    border-radius: 3px;
+
+}
+
+.camera_button:hover {
+    cursor: pointer;
 }
 
 .barDown {
@@ -92,6 +104,5 @@
 .active-icon {
     color: #e36363;
 }
-
 
 

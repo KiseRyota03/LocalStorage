@@ -23,16 +23,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/author" element={<Author />} />
           <Route path="/video" element={<Video />} />
-          <Route path="/text" element={<Text />} />
+          <Route path="/text" element={<Text />}cm />
           <Route path="/profile" element={<Profile />} />
           <Route path="/lesson" element={<Lesson />} />
           <Route path="/subject" element={<Subject />} />
-          <Route path="/level" element={<Level />} />
+          <Route path="/lesson/:lessonID" element={<Level />} />
           <Route path="/point" element={<Point />} />
           <Route path="/word" element={<Word />} />
           <Route path="/check" element={<Check />} />
-
-    
 
         </Routes>
       </div>
