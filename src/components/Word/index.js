@@ -6,13 +6,18 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons'
 // import { faGear } from '@fortawesome/free-solid-svg-icons'
 // import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
-
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function Word() {
     return (
         <div className='text-wrap'>
-            <div className='barTop'>
-                <div className='barTop-title'>
+            <div className="barTop">
+                <div className="barTop-title">
+                    <a href="/lesson" className="arrow-return">
+                        <i>
+                            <FontAwesomeIcon icon={faArrowLeft} />
+                        </i>
+                    </a>
                     LGP
                 </div>
             </div>
