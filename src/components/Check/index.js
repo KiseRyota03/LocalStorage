@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import {faGear} from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
-
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function Check() {
   return (
@@ -40,7 +40,7 @@ function Check() {
       </div>
 
       <div className='button-wrap'>
-        <a href='/Subject'>
+        <a href='/lesson'>
           <button className='profile-button'>
             Trở lại
           </button>

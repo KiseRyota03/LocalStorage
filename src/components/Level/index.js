@@ -78,7 +78,7 @@ function Level() {
                             {lesson.listLabel.map((les) => {
                                 return (
                                 <div className="level-item">
-                                <a href="/subject">
+                                <a href="/Word">
                                     <div className="item-content">{les.labelVn}</div>
                                     <div className="item-text">35 điểm</div>
                                 </a>
