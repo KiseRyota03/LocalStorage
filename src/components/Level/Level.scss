@@ -8,7 +8,14 @@
 .level-heading {
     margin-left: 20px;
 }
-
+.level-add {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+.level-add:hover {
+    color: #666 ;
+}
 .level-sub {
     color: #999999;
 }

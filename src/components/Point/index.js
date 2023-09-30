@@ -16,7 +16,7 @@ function Point() {
         <div className='vid-wrap'>
             <div className='barTop'>
                 <div className='barTop-title'>
-                    <a href='/level' className='arrow-return'>
+                    <a href='/Lesson' className='arrow-return'>
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
@@ -31,27 +31,15 @@ function Point() {
                 </div>
 
                 <div className='point-box'>
-                    <div className='box-icon'>
-                        <FontAwesomeIcon icon={faBolt} />
-                        <FontAwesomeIcon icon={faBolt} />
-                        <FontAwesomeIcon icon={faBolt} />
-                    </div>
                     <div className='box-correct'>
                         <div className='correct-num'>
                             6
                         </div>
                         <div className='correct-text'>
-                            Số bài đúng
+                            Trung bình
                         </div>
                     </div>
-                    <div className='box-score'>
-                        <div className='score-num'>
-                            21
-                        </div>
-                        <div className='score-text'>
-                            Tổng số điểm
-                        </div>
-                    </div>
+                 
 
                 </div>
             </div>
@@ -65,7 +53,7 @@ function Point() {
                             apple
                         </div>
                         <div className='point-sub'>
-                            Bài đúng
+                            Point
                         </div>
                     </a>
                 </div>
@@ -78,7 +66,7 @@ function Point() {
                             apple
                         </div>
                         <div className='point-sub'>
-                            Bài đúng
+                        Point
                         </div>
                     </a>
                 </div>
@@ -91,7 +79,7 @@ function Point() {
                             apple
                         </div>
                         <div className='point-sub'>
-                            Bài đúng
+                        Point
                         </div>
                     </a>
                 </div>
@@ -104,7 +92,7 @@ function Point() {
                             apple
                         </div>
                         <div className='point-sub'>
-                            Bài đúng
+                        Point
                         </div>
                     </a>
                 </div>
@@ -117,7 +105,7 @@ function Point() {
                             apple
                         </div>
                         <div className='point-sub'>
-                            Bài đúng
+                        Point
                         </div>
                     </a>
                 </div>
@@ -130,14 +118,14 @@ function Point() {
                             apple
                         </div>
                         <div className='point-sub'>
-                            Bài đúng
+                        Best
                         </div>
                     </a>
                 </div>
 
             </div>
             <div className='button-wrap'>
-                <a href='/subject'>
+                <a href='/lesson'>
                     <button className='profile-button'>
                         Trở lại
                     </button>

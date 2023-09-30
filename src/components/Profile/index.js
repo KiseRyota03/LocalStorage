@@ -19,6 +19,7 @@ function Profile() {
         },
     );
 
+    const [language, setLanguage] = useState(1);
     const [post, setPost] = useState({
         name: '',
         email: '',
@@ -30,9 +31,20 @@ function Profile() {
         registerType: ''
     });
 
+
     const handleInput = (e) => {
         setPost({...post, [e.target.name]: e.target.value})
     }
+
+    const handleLanguage = (e) => {
+        setLanguage(1);
+    }
+
+    const handleLanguageEn = (e) => {
+        setLanguage(2);
+    }
+
+    localStorage.setItem('lan', (language));
 
     useEffect(() => {
         axios.get('http://117.6.133.148:8089/api/v1/user')
@@ -43,6 +55,8 @@ function Profile() {
             console.log(err);
         });
     }, [])
+
+    console.log(language);
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -80,8 +94,11 @@ function Profile() {
                 </div>
 
                 <div className="profile-box">
-                    <div className="box-text">Ngôn ngữ</div>
-                    <input onChange = {handleInput} className="box-fill"></input>
+                    <div className="box-text box-TextLan">Ngôn ngữ</div>
+                    <input className = "radVi" name = "lan" value = "vi" onChange = {handleLanguage} type ="radio" id="vi"></input>
+                    <label className = "labVi" for="vi">Việt Nam</label>
+                    <input className = "radEn" name = "lan" value = "en" onChange = {handleLanguageEn} type ="radio" id="en"></input>
+                    <label for="vi">English</label>
                 </div>
 
                 <div className="profile-box">

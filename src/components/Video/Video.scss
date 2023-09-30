@@ -57,19 +57,12 @@
     background-size:cover;
 }
 
-.container-camera {
-    justify-content: center;
-    display: flex;
-    padding-top: 520px ;
-}
-
 .camera_button {
-    color: #1789BA;
-    background-color: white;
+    color: black;
+    background-color: #facf39;
     padding: 5px 10px;
     border: #333;
     border-radius: 3px;
-
 }
 
 .camera_button:hover {
@@ -103,6 +96,30 @@
 }
 .active-icon {
     color: #e36363;
+}
+
+.container-camera {
+    position: relative;
+
+}
+
+.upload {
+    position: relative;
+    max-width: 50px;
+    height:46px;
+    z-index: 2;
+    opacity: 0;
+}
+
+.camera_button {
+    position: absolute;
+    width:30%;
+    height:40px;
+    z-index: 1;
+    
+}
+.camera_button i {
+    margin-right: 4px;
 }
 
 

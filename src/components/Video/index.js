@@ -6,6 +6,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import Register from '../Register';
 import axios from 'axios'
 import accessToken from '../Register'
@@ -31,15 +32,16 @@ function Video() {
     const [state, setState] = useState('');
     const [posts, setPosts] = useState([]);
 
-    function handleUpload(e) {
-        console.log(e.target.files)
-        setState(e.target.files[0])
-    }
+    // function handleUpload(e) {
+    //     console.log(e.target.files)
+      
+    // }
 
     const token = localStorage.getItem('accessToken');
 
     const handleApi = (e) => {
         e.preventDefault();
+        setState(e.target.files[0])
         const formData = new FormData()
         formData.append('file', state);
         axios.post("http://117.6.133.148:8089/api/v1/predict", formData)
@@ -104,8 +106,14 @@ function Video() {
 
                       {/* <i>  <FontAwesomeIcon icon={faCamera} /> </i> Upload */}
                       {/* <label className="button-input" for="upload">Upload File</label> */}
-                       <input className="upload" type="file" onChange = {handleUpload} />
-                       <button onClick = {handleApi} className='camera_button'> Gửi </button>
+                       <input className="upload" type="file" onChange = {handleApi} />
+                       
+                       <button className='camera_button'> 
+                        <i>
+                        <FontAwesomeIcon icon={faFolder} />
+                        </i>
+                        Upload
+                        </button>
 
                 </div>
             </div>

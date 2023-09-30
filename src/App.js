@@ -11,6 +11,10 @@ import Subject from "~/components/Subject"
 import Point from "~/components/Point"
 import Word from "~/components/Word"
 import Check from "~/components/Check"
+import TextToVideo from "~/components/TextToVideo"
+import Score from "~/components/Score"
+
+
 
 // import DefaultLayout from "~/components/DefaultLayout";
 
@@ -28,6 +32,8 @@ function App() {
           <Route path="/lesson" element={<Lesson />} />
           <Route path="/subject" element={<Subject />} />
           <Route path="/lesson/:lessonID" element={<Level />} />
+          <Route path="/text/:textID" element={<TextToVideo />} />
+          <Route path="/lesson/:lessonID/:lessonID" element={<Score/>} />
           <Route path="/point" element={<Point />} />
           <Route path="/word" element={<Word />} />
           <Route path="/check" element={<Check />} />

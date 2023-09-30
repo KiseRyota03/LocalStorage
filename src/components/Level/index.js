@@ -24,19 +24,31 @@ function Level() {
 
     const [levels, setLevels] = useState([]);
     const [lessons, setLessons] = useState([]);
-    const location = useLocation();
+    // const [renders, setRenders] = useState(1);
 
-    useEffect(() => {
-        axios
-            .get('http://117.6.133.148:8089/api/v1/level')
-            .then((response) => {
-                console.log(response.data.body);
-                setLevels(response.data.body);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const param = useParams();
+    console.log(location.state.id);
+    console.log(param.lessonID);
+    // useEffect(() => {
+    //     axios
+    //         .get('http://117.6.133.148:8089/api/v1/level')
+    //         .then((response) => {
+    //             console.log(response.data.body);
+    //             setLevels(response.data.body);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
+
+    // const handleRender = (e) => {
+    //     if(renders == 1) setRenders(2);
+    //     else setRenders(1);
+    // }
+
+    // console.log(renders);
 
     useEffect(() => {
         const api_url = `http://117.6.133.148:8089/api/v1/list-labels-by-subjectId?&subjectId=${location.state.id}`;
@@ -45,6 +57,8 @@ function Level() {
             .then((response) => {
                 console.log(response.data.body.listLevel);
                 setLessons(response.data.body.listLevel);
+                // setLevels(response.data.body);
+
             })
             .catch((err) => {
                 console.log(err);
@@ -66,26 +80,33 @@ function Level() {
 
             {lessons.map((lesson) => {
                 return (
+            
                     <div>
                         <div className="level-heading">
-                            <div className="level-title">
-                                Cấp độ {lesson.levelId}
-                            </div>
+                            <a
+                                onClick={() => {
+                                    navigate(`/lesson/${param.lessonID}/${lesson.levelId}`, {
+                                        state: { id: `${lesson.id}` },
+                                    });
+                                }}
+                                key={lesson.id}
+                                className="lesson-add"
+                            >
+                                <div className="level-title">Cấp độ {lesson.levelId}</div>
+                            </a>
                         </div>
 
                         <div className="level-contain">
-
                             {lesson.listLabel.map((les) => {
                                 return (
-                                <div className="level-item">
-                                <a href="/Word">
-                                    <div className="item-content">{les.labelVn}</div>
-                                    <div className="item-text">35 điểm</div>
-                                </a>
-                            </div>
+                                    <div className="level-item">
+                                        <a href="/Word">
+                                            <div className="item-content">{les.labelVn}</div>
+                                            <div className="item-text">35 điểm</div>
+                                        </a>
+                                    </div>
                                 );
                             })}
-                           
                         </div>
                     </div>
                 );
