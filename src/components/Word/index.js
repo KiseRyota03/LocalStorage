@@ -38,7 +38,7 @@ function Word() {
                     <div className="DownContain-camera">
                         <input className="upload" type="file" />
 
-                        <button className="camera_button">
+                        <button className="camera_button-word">
                             <i>
                                 <FontAwesomeIcon icon={faFolder} />
                             </i>

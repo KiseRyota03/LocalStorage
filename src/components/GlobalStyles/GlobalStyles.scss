@@ -1,15 +1,23 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@100;400&family=Satisfy&display=swap');
 
+@media all and (max-width: 320px) {
+
+}
+
 html {
     font-size: 62.5%;
     border: none;
+    width: 420px;
+    margin: auto;
+    height: 1vh;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body {

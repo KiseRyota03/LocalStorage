@@ -1,20 +1,24 @@
 .lesson-wrap {
     display: grid;
     grid-template-columns: auto auto;
-    height:640px;
+    height: 90vh;
+    
 }
 .lesson-item {
-    font-size: 30px;
     text-align: center;
     background-image: url('~/src/components/pic/pic7.jpg') ;
-    padding-top: 250px;
+    background-size: cover;
+    vertical-align: bottom;
 }
 
 .lesson-button {
+    font-size: 12px;
     color: black;
     background-color: #facf39;
     border: none;
     border-radius: 3px;
     font-weight: 700;
     padding: 10px;
+    width: 85px;
+    margin-top: 38vh;   
 }

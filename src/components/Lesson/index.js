@@ -11,6 +11,7 @@ import {
     useParams
 } from 'react-router-dom'
 
+
 function Lesson() {
     let users = [];
 
@@ -51,7 +52,7 @@ function Lesson() {
                 {posts.map((post) => {
                     return (
                         <div className="lesson-item">
-                            <a>
+                            <a className='lesson-click'>
                                 <button onClick= {() => {
                                     navigate(`/lesson/${post.id}`, {state:{id:`${post.id}`}})
                                 }} key = {post.id} className="lesson-button">{post.name}

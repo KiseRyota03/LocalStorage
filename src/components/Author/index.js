@@ -254,7 +254,7 @@ const Author = () => {
         </section> */}
            {/* register button */}
       {/* <button disabled={!validName || !validPwd || !validEmail ? true : false}>Sign Up</button> */}
-      <button>Sign Up</button>
+      <button className='button_sign'>Sign Up</button>
       </form>
 
       <div className='res-sign'>

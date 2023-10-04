@@ -4,22 +4,18 @@
 }
 
 .bg {
-    background-image: url(~/src/components/pic/pic1.jpg);
-    height: 50%;
+    background-image: url(~/src/components/pic/pic1_test.jpg);
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 
 .bg2 {
-    background-image: url(~/src/components/pic/pic1.jpg);
-    height: 500%;
+    background-image: url(~/src/components/pic/pic1_test.jpg);
+    height:  100%;
     background-repeat: no-repeat;
     background-size: cover;
-}
-.wrap {
-    width: 100%;
-    height:100%;
 }
 
 .ins-head {
@@ -34,12 +30,12 @@
 .ins-text {
     margin-left: 50px;
     padding-right: 50px;
-    margin-top: 20px;
+    margin-top: 85px;
     line-height: 2rem;
 }
 
 .ins2-text {
-    padding-top: 260px;
+    padding-top: 325px;
     padding-left: 50px;
     padding-right: 50px;
     line-height: 2rem;

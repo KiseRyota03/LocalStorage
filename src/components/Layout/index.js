@@ -12,7 +12,7 @@ function Layout() {
           </div>
 
           <div className="ins-logo">
-            LGP
+            pSLR
           </div>
 
           <div className="ins-text">

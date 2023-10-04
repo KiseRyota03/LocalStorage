@@ -1,9 +1,10 @@
 .res-wrap {
     margin-left: 30px;
+    margin-top: 20px;
 }
 
 .res-heading {
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 2rem;
 }
 
@@ -42,8 +43,7 @@
 }
 
 .res-arrow {
-    bottom: 200px;
-    right: 20px;
+    bottom: 45vh;
     width: 50px;
     height: 50px;
     background: #324A59;
@@ -52,8 +52,10 @@
     line-height: 50px;
     border-radius: 50%;
     z-index: 2;
-    position: fixed;
+    position: absolute;
     cursor: pointer;
+    right:42vw;
+
 }
 
 .res-arrow a {
