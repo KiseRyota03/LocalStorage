@@ -119,7 +119,7 @@ function Text() {
                                     {' '}
                                     {post.labelEn}{' '}
                                 </div>
-                                <button className="box-button">CHỌN</button>
+                                <button className="box-button">PICK</button>
                             </div>
                         </a>
                     );

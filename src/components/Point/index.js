@@ -8,15 +8,17 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 // import pic8 from '~/components/pic/pic8.jpg'
 import pic6 from '~/components/pic/pic6.jpg'
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Point() {
+    const navigate = useNavigate();
+
     return (
         <div className='vid-wrap'>
             <div className='barTop'>
                 <div className='barTop-title'>
-                    <a href='/Lesson' className='arrow-return'>
+                    <a onClick={() => navigate(-1)} className='arrow-return'>
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
@@ -125,7 +127,7 @@ function Point() {
 
             </div>
             <div className='button-wrap'>
-                <a href='/lesson'>
+                <a onClick={() => navigate(-1)}>
                     <button className='profile-button'>
                         Trở lại
                     </button>

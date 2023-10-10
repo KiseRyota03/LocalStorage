@@ -5,6 +5,8 @@ import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import pic6 from '~/components/pic/pic6.jpg';
 import axios from 'axios';
@@ -18,6 +20,9 @@ function Text() {
     const lan = localStorage.getItem('lan');
 
     const navigate = useNavigate();
+    const {state} = useLocation();
+    const {title } = state; // Read values passed on state
+    console.log(title);
 
     axios.interceptors.request.use(
         (config) => {
@@ -34,39 +39,6 @@ function Text() {
 
     const [posts, setPosts] = useState([]);
 
-    // const getUser = () => {
-    //     axios
-    //         .get('http://117.6.133.148:8089/api/v1/label')
-    //         .then(function (response) {
-    //             console.log(response.data.body);
-    //             var htmls = response.data.body.map(function (res) {
-    //                 return `
-    //                 <div className="content-box">
-    //                 <img src={pic6} className="box-image" alt=""></img>
-    //                 <div className="box-title">${res.labelVn}</div>
-    //                 <button className="box-button">CHỌN</button>
-    //                 </div>
-    //                 `;
-    //             });
-    //         })
-
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // };
-
-    // useEffect(() => {
-    //     axios
-    //         .get('http://117.6.133.148:8089/api/v1/label')
-    //         .then((response) => {
-    //             console.log(response.data.body);
-    //             setPosts(response.data.body);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
-
     useEffect(() => {
         const api_url = `http://117.6.133.148:8089/api/v1/list-labels-by-subjectId?&subjectId=${param.lessonID}`;
         axios
@@ -80,42 +52,49 @@ function Text() {
             });
     }, []);
 
-    // console.log(lan);
 
     return (
         <div className="text-wrap">
-            <div className="barTop">
-                <div className="barTop-title">LGP</div>
+              <div className="barTop">
+                <div className="barTop-title">
+                    <a onClick={() => navigate(-1)} className="arrow-return">
+                        <i>
+                            <FontAwesomeIcon icon={faArrowLeft} />
+                        </i>
+                    </a>
+                    LGP
+                </div>
             </div>
-            <div className="search-wrap">
-
+            <div className="score-heading">
+                <h2>
+                {title}
+                </h2>
+                <h4>
+                    Cấp độ {param.lessonID}
+                </h4>
             </div>
-
             {
-                //     <a>
-                //     <button onClick= {() => {
-                //         navigate(`/lesson/${post.id}`, {state:{id:`${post.id}`}})
-                //     }} key = {post.id} className="lesson-button">{post.name}
+                
 
-                //     </button>
-                // </a>
                 posts.map((post) => {
                     return (
                         <a
                             className="content-add"
-                            onClick={() => {
-                                navigate(`/Text/${post.id}`, { state: { id: `${post.id}` } });
-                            }}
-                            key={post.id}
+                          
                         >
                             {post.listLabel.map((pos) => {
                                 if (post.levelId == param.lessonID) {
                                     return (
-                                        <div className="content-box">
+                                        <div onClick={() => {
+                                            navigate(`/Text`, {
+                                                state: { title: `${pos.labelVn}` },
+                                            });
+                                        }}
+                                        className="content-box"
+                                        >
                                             <img src={pic6} className="box-image" alt=""></img>
                                             <div className="box-title" key={pos.id}>
-                                                {' '}
-                                                {pos.labelVn}{' '}
+                                                {pos.labelVn}
                                             </div>
                                             <button className="box-button">CHỌN</button>
                                         </div>
@@ -125,22 +104,7 @@ function Text() {
                         </a>
                     );
 
-                    // else {
-                    //     return (
-                    //         <a className ="content-add" onClick ={() => {
-                    //             navigate(`/Text/${post.id}`, {state: {id: `${post.id}`}})
-                    //         }} key = {post.id}>
-                    //             <div className="content-box">
-                    //                 <img src={pic6} className="box-image" alt=""></img>
-                    //                 <div className="box-title" key={post.id}>
-                    //                     {' '}
-                    //                     {post.labelEn}{' '}
-                    //                 </div>
-                    //                 <button className="box-button">CHỌN</button>
-                    //             </div>
-                    //         </a>
-                    //     );
-                    // }
+                
                 })
             }
 

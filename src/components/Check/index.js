@@ -7,8 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-
+import { useNavigate } from 'react-router-dom';
 function Check() {
+
+    const navigate = useNavigate();
+    
     return (
         <div className="text-wrap">
             <div className="barTop">
@@ -34,7 +37,7 @@ function Check() {
                 Point
             </div>
             <div className="button-wrap">
-                <a href="/lesson">
+                <a onClick={() => navigate(-1)} >
                     <button className="profile-button">Trở lại</button>
                 </a>
             </div>

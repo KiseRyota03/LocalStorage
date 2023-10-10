@@ -11,6 +11,13 @@ import { useLocation } from 'react-router';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function Level() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const param = useParams();
+
+    const { state } = useLocation();
+    const { id, name } = state; // Read values passed on state
+
     const token = localStorage.getItem('accessToken');
     axios.interceptors.request.use(
         (config) => {
@@ -26,11 +33,8 @@ function Level() {
     const [lessons, setLessons] = useState([]);
     // const [renders, setRenders] = useState(1);
 
-    const location = useLocation();
-    const navigate = useNavigate();
-    const param = useParams();
-    console.log(location.state.id);
-    console.log(param.lessonID);
+    // console.log(location.state.id);
+    // console.log(param.lessonID);
     // useEffect(() => {
     //     axios
     //         .get('http://117.6.133.148:8089/api/v1/level')
@@ -58,7 +62,6 @@ function Level() {
                 console.log(response.data.body.listLevel);
                 setLessons(response.data.body.listLevel);
                 // setLevels(response.data.body);
-
             })
             .catch((err) => {
                 console.log(err);
@@ -77,30 +80,34 @@ function Level() {
                     LGP
                 </div>
             </div>
-
+            <h2 className="level-top"> {name}</h2>
             {lessons.map((lesson) => {
                 return (
-            
                     <div>
                         <div className="level-heading">
                             <a
                                 onClick={() => {
                                     navigate(`/lesson/${param.lessonID}/${lesson.levelId}`, {
-                                        state: { id: `${lesson.id}` },
+                                        state: { title: `${name}` },
                                     });
                                 }}
-                                key={lesson.id}
                                 className="lesson-add"
                             >
                                 <div className="level-title">Cấp độ {lesson.levelId}</div>
                             </a>
                         </div>
-
                         <div className="level-contain">
                             {lesson.listLabel.map((les) => {
                                 return (
                                     <div className="level-item">
-                                        <a href="/Word">
+                                        <a
+                                            onClick={() => {
+                                                navigate(`/Word`, {
+                                                    state: { heading: `${les.labelVn}` },
+                                                });
+                                            }}
+                                            className="lesson-add"
+                                        >
                                             <div className="item-content">{les.labelVn}</div>
                                             <div className="item-text">35 điểm</div>
                                         </a>

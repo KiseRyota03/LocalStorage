@@ -6,17 +6,14 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import {
-    useNavigate,
-    useParams
-} from 'react-router-dom'
-
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Lesson() {
     let users = [];
 
     const navigate = useNavigate();
-    const {lessonID} = useParams();
+
+    const { lessonID } = useParams();
     const token = localStorage.getItem('accessToken');
 
     axios.interceptors.request.use(
@@ -31,7 +28,8 @@ function Lesson() {
 
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('http://117.6.133.148:8089/api/v1/subject')
+        axios
+            .get('http://117.6.133.148:8089/api/v1/subject')
             .then((response) => {
                 console.log(response.data.body);
                 setPosts(response.data.body);
@@ -41,8 +39,6 @@ function Lesson() {
             });
     }, []);
 
-
- 
     return (
         <div className="text-wrap">
             <div className="barTop">
@@ -52,11 +48,15 @@ function Lesson() {
                 {posts.map((post) => {
                     return (
                         <div className="lesson-item">
-                            <a className='lesson-click'>
-                                <button onClick= {() => {
-                                    navigate(`/lesson/${post.id}`, {state:{id:`${post.id}`}})
-                                }} key = {post.id} className="lesson-button">{post.name}
-                                
+                            <a className="lesson-click">
+                                <button
+                                    onClick={() => {
+                                        navigate(`/lesson/${post.id}`, { state: { id: `${post.id}`, name: `${post.name}` } });
+                                    }}
+                                    key={post.id}
+                                    className="lesson-button"
+                                >
+                                    {post.name}
                                 </button>
                             </a>
                         </div>

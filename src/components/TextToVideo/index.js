@@ -10,10 +10,13 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useLocation } from 'react-router';
 import { useState, useEffect } from 'react';
+import lan from '~/components/Profile';
 
 
 function Word() {
     const token = localStorage.getItem('accessToken');
+    const lan = localStorage.getItem('lan');
+
     axios.interceptors.request.use(
         (config) => {
             config.headers.authorization = `Bearer ${token}`;
@@ -56,11 +59,21 @@ function Word() {
             {
                 lessons.map((lesson) => {
                     if(location.state.id == lesson.id)
-                    return(
-                  <div className='word-title' >
-                    {lesson.labelVn}
-                   </div>
-                    )
+                        if(lan==1) {
+                            return(
+                                <div className='word-title' >
+                                  {lesson.labelVn}
+                                 </div>
+                                  )
+                        }
+                        else {
+                            return(
+                                <div className='word-title' >
+                                  {lesson.labelEn}
+                                 </div>
+                                  )
+                        }
+                 
 
                 })
             }

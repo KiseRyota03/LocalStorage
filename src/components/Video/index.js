@@ -87,9 +87,8 @@ function Video() {
     const [posts, setPosts] = useState([]);
 
     const token = localStorage.getItem('accessToken');
-    let up = 0;
+
     const handleApi = (e) => {
-        up = 1;
         e.preventDefault();
         setState(e.target.files[0]);
         const formData = new FormData();
@@ -153,9 +152,7 @@ function Video() {
                 </div>
 
                 <div className="container-camera">
-                    {/* <i>  <FontAwesomeIcon icon={faCamera} /> </i> Upload */}
-                    {/* <label className="button-input" for="upload">Upload File</label> */}
-                    <input className="upload" type="file" onChange={handleApi} />
+                    <input className="upload" type="file" onChange ={handleApi} />
 
                     <button className="camera_button">
                         <i>
