@@ -13,6 +13,8 @@ import Word from "~/components/Word"
 import Check from "~/components/Check"
 import TextToVideo from "~/components/TextToVideo"
 import Score from "~/components/Score"
+import LearnByWord from "~/components/LearnByWord"
+
 
 
 
@@ -37,6 +39,8 @@ function App() {
           <Route path="/point" element={<Point />} />
           <Route path="/word" element={<Word />} />
           <Route path="/check" element={<Check />} />
+          <Route path="/LearnByWord" element={<LearnByWord />} />
+
 
         </Routes>
       </div>

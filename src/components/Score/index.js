@@ -86,7 +86,7 @@ function Text() {
                                 if (post.levelId == param.lessonID) {
                                     return (
                                         <div onClick={() => {
-                                            navigate(`/Text`, {
+                                            navigate(`/LearnByWord`, {
                                                 state: { title: `${pos.labelVn}` },
                                             });
                                         }}
