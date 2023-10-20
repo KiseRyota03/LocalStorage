@@ -4,9 +4,14 @@
 }
 
 .res-heading {
-    margin-top: 20px;
-    font-size: 2rem;
+    margin-top: 100px;
+    font-size: 30px;
+    color: #143EC0;
+    font-weight: bold;
+    margin-bottom: 50px;
 }
+
+
 
 .res-text {
     color: #666;
@@ -30,16 +35,19 @@
 .res-add {
     border: none;
     padding: 10px 5px;
-    width: 100%;
-
+    width: 89%;
+}
+.res-forget {
+    margin-top: 5px;
+    float: right;
+    margin-right: 40px;
 
 }
-
 .res-forget a {
-    margin-top: 20px;
-    justify-content: center;
-    display: flex;
-    color: #324A59;
+    text-decoration: none;
+    color: #143EC0;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .res-arrow {
@@ -80,15 +88,35 @@
 
 .res-icon {
     margin-right: 10px;
-    // border-bottom: 0.1px solid #C1C7D0 ;
-    padding: 7px 5px;
+    padding: 10px 12px 12px;   
 
 }
 
 .res-box {
     border-bottom: 0.1px solid #C1C7D0 ;
-    width: 80% ;
+    width: 90% ;
     display: flex;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+
+
+}
+
+.res-box input {
+    background-color: #d9d9d9;
+}
+
+.signButton {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.signButton-click {
+    background-color: #143EC0;
+    color: white;
+    padding: 10px 30px ;
+    border-radius: 15px;
+    border: none;
 }
 
 .res-box2 {

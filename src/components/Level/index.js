@@ -14,6 +14,7 @@ function Level() {
     const location = useLocation();
     const navigate = useNavigate();
     const param = useParams();
+    const level = param.lessonID;
 
     const { state } = useLocation();
     const { id, name } = state; // Read values passed on state
@@ -88,7 +89,7 @@ function Level() {
                             <a
                                 onClick={() => {
                                     navigate(`/lesson/${param.lessonID}/${lesson.levelId}`, {
-                                        state: { title: `${name}` },
+                                        state: { title: `${name}`, level_title: `${level}` },
                                     });
                                 }}
                                 className="lesson-add"

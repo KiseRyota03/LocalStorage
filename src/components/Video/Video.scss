@@ -129,12 +129,12 @@
 .webcam_controller button {
     color: black;
     background-color: #facf39;
-    padding: 5px 10px;
     border: #333;
     border-radius: 3px;
     justify-content: center;        
     display: flex;
     margin: auto;    
+    
 }
 
 .button_camera {
@@ -151,11 +151,13 @@
     background-repeat: no-repeat;
     background-size:cover;
 }
+.webcam_controller button {
+    padding: 14px;
+}
 
 .container-camera {
     justify-content: center;
     display: flex;
-    padding-top: 30vh;
     padding-bottom: 20px;
     color: #1789BA;
 }

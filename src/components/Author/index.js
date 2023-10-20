@@ -136,12 +136,10 @@ const Author = () => {
       </a>
 
       <div className="res-heading">
-        Sign up
+              Register
       </div>
 
-      <div className="res-text">
-        Create an account here
-      </div>
+  
       {/* error message */}
       {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
       <form onSubmit ={handleSubmit}>
@@ -265,9 +263,9 @@ const Author = () => {
 
 
       {/* arrow */}
-      <button onSubmit = {handleSubmit} className='res-arrow'>
+      {/* <button onSubmit = {handleSubmit} className='res-arrow'>
           <FontAwesomeIcon icon={faArrowRight} />
-      </button>
+      </button> */}
 
       <div className='res-nav'>
         <div className='res-nav_text'>

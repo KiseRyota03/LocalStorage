@@ -10,17 +10,14 @@ import pic6 from '~/components/pic/pic6.jpg';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import lan from '~/components/Profile';
-import {
-    useNavigate,
-    useParams
-} from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Text() {
     const token = localStorage.getItem('accessToken');
     const lan = localStorage.getItem('lan');
 
     const navigate = useNavigate();
-    const {textID} = useParams();
+    const { textID } = useParams();
 
     axios.interceptors.request.use(
         (config) => {
@@ -33,26 +30,6 @@ function Text() {
     );
 
     const [posts, setPosts] = useState([]);
-    // const getUser = () => {
-    //     axios
-    //         .get('http://117.6.133.148:8089/api/v1/label')
-    //         .then(function (response) {
-    //             console.log(response.data.body);
-    //             var htmls = response.data.body.map(function (res) {
-    //                 return `
-    //                 <div className="content-box">
-    //                 <img src={pic6} className="box-image" alt=""></img>
-    //                 <div className="box-title">${res.labelVn}</div>
-    //                 <button className="box-button">CHỌN</button>
-    //                 </div>
-    //                 `;
-    //             });
-    //         })
-
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // };
 
     useEffect(() => {
         axios
@@ -87,46 +64,53 @@ function Text() {
                 //     <button onClick= {() => {
                 //         navigate(`/lesson/${post.id}`, {state:{id:`${post.id}`}})
                 //     }} key = {post.id} className="lesson-button">{post.name}
-                    
+
                 //     </button>
                 // </a>
-            posts.map((post) => {
-                if (lan == 1) {
-                    return (
-                        <a className ="content-add" onClick ={() => {
-                            navigate(`/Text/${post.id}`, {state: {id: `${post.id}`}})
-                        }} key = {post.id}>
-                            <div className="content-box">
-                                <img src={pic6} className="box-image" alt=""></img>
-                                <div className="box-title" key={post.id}>
-                                    {' '}
-                                    {post.labelVn}{' '}
+                posts.map((post) => {
+                    if (lan == 1) {
+                        return (
+                            <a
+                                className="content-add"
+                                onClick={() => {
+                                    navigate(`/Text/${post.id}`, {
+                                        state: { id: `${post.id}`, headers: `${post.labelVn}` },
+                                    });
+                                }}
+                                key={post.id}
+                            >
+                                <div className="content-box">
+                                    <img src={pic6} className="box-image" alt=""></img>
+                                    <div className="box-title" key={post.id}>
+                                        {post.labelVn}
+                                    </div>
+                                    <button className="box-button">CHỌN</button>
                                 </div>
-                                <button className="box-button">CHỌN</button>
-                            </div>
-                        </a>
-                    );
-                }
-
-                else {
-                    return (
-                        <a className ="content-add" onClick ={() => {
-                            navigate(`/Text/${post.id}`, {state: {id: `${post.id}`}})
-                        }} key = {post.id}>
-                            <div className="content-box">
-                                <img src={pic6} className="box-image" alt=""></img>
-                                <div className="box-title" key={post.id}>
-                                    {' '}
-                                    {post.labelEn}{' '}
+                            </a>
+                        );
+                    } else {
+                        return (
+                            <a
+                            className="content-add"
+                            onClick={() => {
+                                navigate(`/Text/${post.id}`, {
+                                    state: { id: `${post.id}`, headers: `${post.labelEn}` },
+                                });
+                            }}
+                            key={post.id}
+                        >
+                                <div className="content-box">
+                                    <img src={pic6} className="box-image" alt=""></img>
+                                    <div className="box-title" key={post.id}>
+                                        {' '}
+                                        {post.labelEn}{' '}
+                                    </div>
+                                    <button className="box-button">PICK</button>
                                 </div>
-                                <button className="box-button">PICK</button>
-                            </div>
-                        </a>
-                    );
-                }
-            }
-
-            )
+                            </a>
+                        );
+                    }
+                })
             }
 
             <div className="barDown">

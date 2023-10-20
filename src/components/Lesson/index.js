@@ -40,44 +40,49 @@ function Lesson() {
     }, []);
 
     return (
-        <div className="text-wrap">
+        <div className="text-lesson">
             <div className="barTop">
                 <div className="barTop-title">LGP</div>
             </div>
-            <div className="lesson-wrap">
-                {posts.map((post) => {
-                    return (
-                        <div className="lesson-item">
-                            <a className="lesson-click">
-                                <button
-                                    onClick={() => {
-                                        navigate(`/lesson/${post.id}`, { state: { id: `${post.id}`, name: `${post.name}` } });
-                                    }}
-                                    key={post.id}
-                                    className="lesson-button"
-                                >
-                                    {post.name}
-                                </button>
+            <div className="lesson-contain">
+                <div className="lesson-wrap">
+                    {posts.map((post) => {
+                        return (
+                            <div className="lesson-item">
+                                <a className="lesson-click">
+                                    <button
+                                        onClick={() => {
+                                            navigate(`/lesson/${post.id}`, {
+                                                state: { id: `${post.id}`, name: `${post.name}` },
+                                            });
+                                        }}
+                                        key={post.id}
+                                        className="lesson-button"
+                                    >
+                                        {post.name}
+                                    </button>
+                                </a>
+                            </div>
+                        );
+                    })}
+                  
+                </div>
+                <div className="barDown">
+                        <div className="barDown-items">
+                            <a href="/Video" className="nonActive-icon">
+                                <FontAwesomeIcon icon={faHand} />
+                            </a>
+                            <a href="/Text" className="nonActive-icon">
+                                <FontAwesomeIcon icon={faMessage} />
+                            </a>
+                            <a href="/Lesson" className="active-icon">
+                                <FontAwesomeIcon icon={faBook} />
+                            </a>
+                            <a href="/Profile" className="nonActive-icon">
+                                <FontAwesomeIcon icon={faGear} />
                             </a>
                         </div>
-                    );
-                })}
-            </div>
-            <div className="barDown">
-                <div className="barDown-items">
-                    <a href="/Video" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faHand} />
-                    </a>
-                    <a href="/Text" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faMessage} />
-                    </a>
-                    <a href="/Lesson" className="active-icon">
-                        <FontAwesomeIcon icon={faBook} />
-                    </a>
-                    <a href="/Profile" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faGear} />
-                    </a>
-                </div>
+                    </div>
             </div>
         </div>
     );

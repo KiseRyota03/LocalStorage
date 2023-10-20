@@ -7,6 +7,7 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import Register from '../Register';
 import axios from 'axios';
 import accessToken from '../Register';
@@ -67,7 +68,7 @@ function Video() {
         }
     }, [recordedChunks]);
 
-    // function
+    // sign out
     const handleClick = () => {
         localStorage.clear();
         window.location.reload();
@@ -99,19 +100,6 @@ function Video() {
         });
     };
 
-    // useEffect(() => {
-    //     const formData = new FormData()
-    //     formData.append('file', state);
-    //     axios.post("http://117.6.133.148:8089/api/v1/predict", formData)
-    //         .then(response => {
-    //             console.log(response.data.body);
-    //             setPosts(response.data.body);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, [] );
-
     return (
         <div className="vid-wrap">
             <div className="barTop">
@@ -139,27 +127,35 @@ function Video() {
                 </div>
 
                 <div className="webcam_controller">
-                    <Webcam mirrored={true} audio={true} videoConstraints={videoConstraints} ref={webcamRef} />
+                    <Webcam mirrored={true} audio={false} videoConstraints={videoConstraints} ref={webcamRef} />
                     {capturing ? (
                         <button onClick={handleStopCaptureClick}>Stop Capture</button>
                     ) : (
-                        <button onClick={handleStartCaptureClick}> 
-                        <FontAwesomeIcon className='button_camera' icon={faCamera} />
-                        Start Capture</button>
+                        <button onClick={handleStartCaptureClick}>
+                            <FontAwesomeIcon className="button_camera" icon={faCamera} />
+                            Start Capture
+                        </button>
                     )}
                     <br></br>
-                    {recordedChunks.length > 0 && <button onClick={handleDownload}>Download</button>}
-                </div>
+                    <div className="container-camera">
+                        <input className="upload" type="file" onChange={handleApi} />
 
-                <div className="container-camera">
-                    <input className="upload" type="file" onChange ={handleApi} />
-
-                    <button className="camera_button">
-                        <i>
-                            <FontAwesomeIcon icon={faFolder} />
-                        </i>
-                        Upload
-                    </button>
+                        <button className="camera_button">
+                            <i>
+                                <FontAwesomeIcon icon={faFolder} />
+                            </i>
+                            Upload
+                        </button>
+                    </div>
+                    {recordedChunks.length > 0 && (
+                        <button onClick={handleDownload}>
+                            <i>
+                            
+                                <FontAwesomeIcon icon={faDownload} />
+                            </i>
+                            Download
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="barDown">

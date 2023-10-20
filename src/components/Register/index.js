@@ -53,44 +53,16 @@ function Register() {
         }),      
         }); 
         setSuccess(true);
-        // console.log("res", response)
         const Token = response.data.body.token.accessToken;
-        // console.log({Token})
         localStorage.setItem('accessToken', (Token));
         console.log(JSON.stringify(response?.data));
-        // console.log(localStorage)
-        // console.log(Token);
+
     }
             catch(error) {
                 console.log(error);
                 alert('error')
             }
         }
-
-    // const handlePrint = async (e) => {
-    //     e.preventDefault();
-    //     // console.log({email, password})
-    //     const response = axios.post('http://117.6.133.148:8089/api/v1/login', JSON.stringify({email,password}), 
-    //     {
-    //     headers:{'Content-Type': 'application/json',
-    // },
-    //     body: JSON.stringify({
-    //         email: email,
-    //         password: password,
-    //     })      
-    //     })
-    //     .then(result => {
-    //         setSuccess(true);
-    //         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
-    //         console.log(result.data)
-    //         console.log(localStorage)
-
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //         alert('error')
-    //     })
-    // }
 
     return (
         <> { successs ? (
@@ -99,31 +71,30 @@ function Register() {
 
         
             <div className='res-wrap'>
-            <a href="/" className='res-back'>
-                <FontAwesomeIcon icon={faArrowLeft} />
-            </a>
+ 
 
             <div className="res-heading">
                 Sign in
             </div>
 
-            <div className="res-text">
-                Welcome back
-            </div>
+       
 
-            {/* <form onSubmit={handleSubmit} > */}
+          
             <form onSubmit = {handlePrint} >
-
+                <div className='email-form' >
                 <div className="res-box" >
                     <i className='res-icon' >
                         <FontAwesomeIcon icon={faEnvelope} />
                     </i>
                     <input 
-                     placeholder='Email address'
+                     placeholder='Email'
                      className='res-add' 
                      value = {email}
                      onChange={(event) => setEmail(event.target.value)}
                       />
+                </div>
+
+            
                 </div>
 
                 <div className="res-box res-box2">
@@ -139,27 +110,29 @@ function Register() {
                     />
 
                 </div>
+                <div className='signButton'>
 
-                <div className='res-arrow'>
-                    
-                <button  className='register-button'>
-                    <FontAwesomeIcon icon={faArrowRight} />
+                <button className='signButton-click'> 
+                 Sign in
                 </button>
                 </div>
 
-                {/* <button>Sign In</button> */}
 
                 </form  >
+
                 <div className='res-forget'>
                 <a href="./"> Forgot Password?</a>
                 </div>
 
+
+             
+
                 <div className='res-nav'>
                 <div className='res-nav_text'>
-                    New member ?
+                    Don't have an account yet ?
                 </div>
                 <div className='res-nav_click'>
-                    <a href="/author">Sign up </a>
+                    <a href="/author">Register now! </a>
                 </div>
 
             </div>

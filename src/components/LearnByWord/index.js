@@ -12,15 +12,16 @@ import { useLocation } from 'react-router';
 import { useState, useEffect } from 'react';
 import lan from '~/components/Profile';
 import { useNavigate } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
 function Word() {
     const token = localStorage.getItem('accessToken');
     const lan = localStorage.getItem('lan');
     const navigate = useNavigate();
 
-    const {state} = useLocation();
-    const {title } = state; // Read values passed on state
-    console.log(title);
+    const { state } = useLocation();
+    const { title, levelId, subjectId } = state; // Read values passed on state
+    console.log(title, levelId, subjectId);
 
     axios.interceptors.request.use(
         (config) => {
@@ -37,10 +38,10 @@ function Word() {
 
     useEffect(() => {
         axios
-            .get('http://117.6.133.148:8089/api/v1/label')
+            .get(`http://117.6.133.148:8089/api/v1/video?label=${title}`)
             .then((response) => {
-                console.log(response.data.body);
-                setLessons(response.data.body);
+                console.log(response.data.body.video_url);
+                setLessons(response.data.body.video_url);
             })
             .catch((err) => {
                 console.log(err);
@@ -59,30 +60,12 @@ function Word() {
                     LGP
                 </div>
             </div>
-           <div className="score-heading">
-                <h2>
-                {title}
-                </h2>
+            <div className="score-heading">
+                <h2>{title}</h2>
             </div>
-            {lessons.map((lesson) => {
-                if (location.state.id == lesson.id)
-                    if (lan == 1) {
-                        return <div className="word-title">{lesson.labelVn}</div>;
-                    } else {
-                        return <div className="word-title">{lesson.labelEn}</div>;
-                    }
-            })}
-
-            <div className="word-contain">
-                <div className="UpContain">
-                    <div className="UpContain-icon">
-                        <FontAwesomeIcon icon={faPlay} />
-                    </div>
-                </div>
-
-          
+            <div className="video-contain">
+                <ReactPlayer url={lessons} width="300px" height="170px" playing={true} controls={true} />
             </div>
-
             <div className="button-wrap">
                 <a onClick={() => navigate(-1)}>
                     <button className="profile-button">Quay lại</button>

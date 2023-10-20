@@ -1,5 +1,5 @@
 .ins {
-    color: white;
+    color: #000;
     text-align: center;
 }
 
@@ -8,14 +8,7 @@
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-
-.bg2 {
-    background-image: url(~/src/components/pic/pic1_test.jpg);
-    height:  100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+ 
 }
 
 .ins-head {
@@ -23,16 +16,18 @@
 }
 
 .ins-logo {
-    margin-top: 150px;
+    padding-top: 50vh;
     font-size: 4rem;
+    font-weight: 800;
 }
 
 .ins-text {
-    margin-left: 50px;
-    padding-right: 50px;
-    margin-top: 85px;
-    line-height: 2rem;
+    margin: 0 30px;
+    line-height: 3rem;
+    font-size: 2.4rem;
+    font-weight: 500;
 }
+
 
 .ins2-text {
     padding-top: 325px;
@@ -63,4 +58,19 @@
     border:none;
     border-radius: 5px;
     font-weight: 600;
+}
+
+.layout-btn {
+    width: 60%;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: none;
+    background-color: #106FE0;
+    color: white;
+    font-weight: 500;
+}
+
+.for_padding {
+    padding-top: 30%;
 }

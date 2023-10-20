@@ -1,7 +1,10 @@
+.text-lesson {
+    height: 100vh;
+}
+
 .lesson-wrap {
     display: grid;
     grid-template-columns: auto auto;
-    height: 90vh;
     
 }
 .lesson-item {

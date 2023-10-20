@@ -9,11 +9,31 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons'
 // import pic8 from '~/components/pic/pic8.jpg'
 import pic6 from '~/components/pic/pic6.jpg'
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
 
 function Point() {
     const navigate = useNavigate();
 
+    const token = localStorage.getItem('accessToken');
+    const { state } = useLocation();
+    const { levelId, subjectId } = state;
+    console.log(levelId, subjectId);
+
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        axios
+            .post(`http://117.6.133.148:8089/api/v1/scoreWithSubject?levelIds=${levelId}?subjectIds=${subjectId}`)
+            .then((response) => {
+                console.log(response.data.body.scoreList);
+                setPosts(response.data.body.scoreList);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+    
     return (
         <div className='vid-wrap'>
             <div className='barTop'>
@@ -48,82 +68,23 @@ function Point() {
 
             <div className='point-contain'>
                 <div className='point-item'>
-                    <a href='./'>
+                    <a >
                         <img className='point-img' src={pic6} alt="">
                         </img>
                         <div className='point-text'>
                             apple
                         </div>
                         <div className='point-sub'>
-                            Point
+                            {posts}
                         </div>
                     </a>
                 </div>
 
-                <div className='point-item'>
-                    <a href='./'>
-                        <img className='point-img' src={pic6} alt="">
-                        </img>
-                        <div className='point-text'>
-                            apple
-                        </div>
-                        <div className='point-sub'>
-                        Point
-                        </div>
-                    </a>
-                </div>
 
-                <div className='point-item'>
-                    <a href='./'>
-                        <img className='point-img' src={pic6} alt="">
-                        </img>
-                        <div className='point-text'>
-                            apple
-                        </div>
-                        <div className='point-sub'>
-                        Point
-                        </div>
-                    </a>
-                </div>
+             
 
-                <div className='point-item'>
-                    <a href='./'>
-                        <img className='point-img' src={pic6} alt=''>
-                        </img>
-                        <div className='point-text'>
-                            apple
-                        </div>
-                        <div className='point-sub'>
-                        Point
-                        </div>
-                    </a>
-                </div>
 
-                <div className='point-item'>
-                    <a href='./'>
-                        <img className='point-img' src={pic6} alt=''>
-                        </img>
-                        <div className='point-text'>
-                            apple
-                        </div>
-                        <div className='point-sub'>
-                        Point
-                        </div>
-                    </a>
-                </div>
-
-                <div className='point-item'>
-                    <a href='./'>
-                        <img className='point-img' src={pic6} alt=''>
-                        </img>
-                        <div className='point-text'>
-                            apple
-                        </div>
-                        <div className='point-sub'>
-                        Best
-                        </div>
-                    </a>
-                </div>
+               
 
             </div>
             <div className='button-wrap'>

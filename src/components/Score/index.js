@@ -20,9 +20,9 @@ function Text() {
     const lan = localStorage.getItem('lan');
 
     const navigate = useNavigate();
-    const {state} = useLocation();
-    const {title } = state; // Read values passed on state
-    console.log(title);
+    const { state } = useLocation();
+    const { title, level_title } = state; // Read values passed on state
+    console.log(title, level_title);
 
     axios.interceptors.request.use(
         (config) => {
@@ -40,7 +40,7 @@ function Text() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        const api_url = `http://117.6.133.148:8089/api/v1/list-labels-by-subjectId?&subjectId=${param.lessonID}`;
+        const api_url = `http://117.6.133.148:8089/api/v1/list-labels-by-subjectId?&subjectId=${level_title}`;
         axios
             .get(api_url)
             .then((response) => {
@@ -52,10 +52,9 @@ function Text() {
             });
     }, []);
 
-
     return (
         <div className="text-wrap">
-              <div className="barTop">
+            <div className="barTop">
                 <div className="barTop-title">
                     <a onClick={() => navigate(-1)} className="arrow-return">
                         <i>
@@ -66,52 +65,52 @@ function Text() {
                 </div>
             </div>
             <div className="score-heading">
-                <h2>
-                {title}
-                </h2>
-                <h4>
-                    Cấp độ {param.lessonID}
-                </h4>
+                <h2>{title}</h2>
+                <h4>Cấp độ {param.lessonID}</h4>
             </div>
-            {
-                
-
-                posts.map((post) => {
-                    return (
-                        <a
-                            className="content-add"
-                          
-                        >
-                            {post.listLabel.map((pos) => {
-                                if (post.levelId == param.lessonID) {
-                                    return (
-                                        <div onClick={() => {
+            {posts.map((post) => {
+                return (
+                    <a className="content-add">
+                        {post.listLabel.map((pos) => {
+                            if (post.levelId == param.lessonID) {
+                                return (
+                                    <div
+                                        onClick={() => {
                                             navigate(`/LearnByWord`, {
-                                                state: { title: `${pos.labelVn}` },
+                                                state: {
+                                                    title: `${pos.labelVn}`,
+                                                    levelId: `${pos.levelId}`,
+                                                    subjectId: `${pos.subjectId}`,
+                                                },
                                             });
                                         }}
                                         className="content-box"
-                                        >
-                                            <img src={pic6} className="box-image" alt=""></img>
-                                            <div className="box-title" key={pos.id}>
-                                                {pos.labelVn}
-                                            </div>
-                                            <button className="box-button">CHỌN</button>
+        
+        
+                                    >
+                                        
+                                        <img src={pic6} className="box-image" alt=""></img>
+                                        <div className="box-title" key={pos.id}>
+                                            {pos.labelVn}
                                         </div>
-                                    );
-                                }
-                            })}
-                        </a>
-                    );
+                                        <button className="box-button">CHỌN</button>
+                                    </div>
+                                );
+                            }
+                        })}
+                    </a>
+                );
+            })}
 
-                
-                })
-            }
-
-            <div className="button-wrap">
-                <a href="/Point">
+            <div
+                onClick={() => {
+                    navigate(`/Point`, {
+                        state: { levelId: `${param.lessonID}`, subjectId: `${level_title}` },
+                    });
+                }}
+                className="button-wrap"
+            >
                     <button className="profile-button">Score</button>
-                </a>
             </div>
 
             <div className="barDown">
@@ -119,10 +118,10 @@ function Text() {
                     <a href="/Video" className="nonActive-icon">
                         <FontAwesomeIcon icon={faHand} />
                     </a>
-                    <a href="/Message" className="active-icon">
+                    <a href="/Text" className="nonActive-icon">
                         <FontAwesomeIcon icon={faMessage} />
                     </a>
-                    <a href="/Lesson" className="nonActive-icon">
+                    <a href="/Lesson" className="active-icon">
                         <FontAwesomeIcon icon={faBook} />
                     </a>
                     <a href="/Profile" className="nonActive-icon">

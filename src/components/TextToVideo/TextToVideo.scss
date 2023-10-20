@@ -6,15 +6,10 @@
     display: flex;
     justify-content: center;
 }
-
-.UpContain,
-.DownContain {
-    background-image: url(~/src/components/pic/pic1.jpg);
-    background: cover;
-    margin-left: 10%;
-    margin-right: 10%;
-    border-radius: 4px;
-    margin-bottom: 30px;
+.video-contain {
+    justify-content: center;
+    display: flex;    
+    margin-bottom: 20px;
 }
 
 .UpContain-icon {

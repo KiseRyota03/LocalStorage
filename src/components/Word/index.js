@@ -1,16 +1,14 @@
 import './Word.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
-// import { faHand } from '@fortawesome/free-solid-svg-icons'
-// import { faBook } from '@fortawesome/free-solid-svg-icons'
-// import { faGear } from '@fortawesome/free-solid-svg-icons'
-// import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from '../api/axios';
+import ReactPlayer from 'react-player';
 
 
 function Word() {
@@ -20,7 +18,6 @@ function Word() {
 
     const { state } = useLocation();
     const { heading } = state; // Read values passed on state
-    console.log(heading);
 
     const videoConstraints = {
         width: { min: 420 },
@@ -33,6 +30,7 @@ function Word() {
     const mediaRecorderRef = useRef(null);
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
+    const [scoring,setScoring] = useState(false);
 
     const handleDataAvailable = useCallback(
         ({ data }) => {
@@ -42,6 +40,7 @@ function Word() {
         },
         [setRecordedChunks],
     );
+    
 
     const handleStartCaptureClick = useCallback(() => {
         setCapturing(true);
@@ -74,6 +73,47 @@ function Word() {
         }
     }, [recordedChunks]);
 
+    const [stat, setStat] = useState('');
+    const [posts, setPosts] = useState([]);
+    const [lessons, setLessons] = useState([]);
+
+    const token = localStorage.getItem('accessToken');
+
+    axios.interceptors.request.use(
+        (config) => {
+            config.headers.authorization = `Bearer ${token}`;
+            return config;
+        },
+        (error) => {
+            return Promise.reject(error);
+        },
+    );
+
+    useEffect(() => {
+        axios
+            .get(`http://117.6.133.148:8089/api/v1/video?label=${heading}`)
+            .then((response) => {
+                console.log(response.data.body.video_url);
+                setLessons(response.data.body.video_url);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    const handleApi = (e) => {
+        console.log('1');
+        e.preventDefault();
+        setStat(e.target.files[0]);
+        const formData = new FormData();
+        formData.append('file', stat);
+        setScoring(true);
+        axios.post(`http://117.6.133.148:8089/api/v1/checkVideo?label=${heading}`, formData).then((response) => {
+            console.log(response.data.body.score);
+            setPosts(response.data.body.score);
+        });
+    };
+
     return (
         <div className="text-wrap">
             <div className="barTop">
@@ -87,19 +127,23 @@ function Word() {
                 </div>
             </div>
             <div className="word-title">{heading}</div>
-            <div className="word-contain">
-                <div className="UpContain">
-                    <div className="UpContain-icon">
-                        <FontAwesomeIcon icon={faPlay} />
-                    </div>
-                </div>
+           
+            <div className="video-contain">
+            
+            <ReactPlayer
+                url= {lessons}
+                width="300px"
+                height="170px"
+                playing={true}
+                controls={true}
+            />
 
+          
+            </div>
+                
                 <div className="DownContain">
-                    {/* <div className="DownContain-icon">
-                        <FontAwesomeIcon icon={faCamera} />
-                    </div> */}
-                    {/* camera */}
-<div className="webcam_controller">
+              
+                    <div className="webcam_controller">
                     <Webcam mirrored={true} audio={true} videoConstraints={videoConstraints} ref={webcamRef} />
                     {capturing ? (
                         <button onClick={handleStopCaptureClick}>Stop Capture</button>
@@ -111,26 +155,29 @@ function Word() {
                     <br></br>
                     {recordedChunks.length > 0 && <button onClick={handleDownload}>Download</button>}
                 </div>
-                    <div className="DownContain-camera">
 
-{/* upload */}
-                        <input className="upload" type="file" />
-                        <button className="camera_button-word">
-                            <i>
-                                <FontAwesomeIcon icon={faFolder} />
-                            </i>
-                            Upload
-                        </button>
-                    </div>
 
+                <div className="container-camera">
+                    <input className="upload" type="file" onChange ={handleApi} />
+
+                    <button className="camera_button">
+                        <i>
+                            <FontAwesomeIcon icon={faFolder} />
+                        </i>
+                        Upload
+                    </button>
                 </div>
-            </div>
+                { scoring ? (  <div className='video_score'>
+                    Score: {posts}
+                </div>
+                ): (
+                    <div className='video_score'>
+                </div>
+                )}
+               
+                </div>
 
-            <div className="button-wrap">
-                <a href="/Check">
-                    <button className="profile-button">Kiểm tra video</button>
-                </a>
-            </div>
+           
         </div>
     );
 }
