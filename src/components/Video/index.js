@@ -4,7 +4,7 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,8 @@ import axios from 'axios';
 import accessToken from '../Register';
 import { useState, useCallback, useRef } from 'react';
 import Webcam from 'react-webcam';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function Video() {
     //webcam
@@ -68,12 +70,6 @@ function Video() {
         }
     }, [recordedChunks]);
 
-    // sign out
-    const handleClick = () => {
-        localStorage.clear();
-        window.location.reload();
-    };
-
     axios.interceptors.request.use(
         (config) => {
             config.headers.authorization = `Bearer ${token}`;
@@ -104,16 +100,7 @@ function Video() {
         <div className="vid-wrap">
             <div className="barTop">
                 <div className="barTop-title">LGP</div>
-                <div className="barTop-exit">
-                    <button className="exit-button" onClick={handleClick}>
-                        <a href="/register">
-                            <i>
-                                <FontAwesomeIcon icon={faSignOutAlt} />
-                            </i>
-                            Log Out
-                        </a>
-                    </button>
-                </div>
+                
             </div>
             <div className="container">
                 <div className="button-wrap">
@@ -161,16 +148,38 @@ function Video() {
             <div className="barDown">
                 <div className="barDown-items">
                     <a href="/Video" className="active-icon">
+                        <i>
                         <FontAwesomeIcon icon={faHand} />
+                        </i>
+                        <div className='icon_text'> 
+                        Translate
+                        </div>
                     </a>
                     <a href="/Text" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faMessage} />
+                    <i>
+                        <FontAwesomeIcon icon={faSearch} />
+                        </i>
+                        <div className='icon_text'> 
+                        Search
+                        </div>
                     </a>
                     <a href="/Lesson" className="nonActive-icon">
+                    <i>
                         <FontAwesomeIcon icon={faBook} />
+                        </i>
+                        <div className='icon_text'> 
+                        Learn
+                        </div>
+
                     </a>
+                    
                     <a href="/Profile" className="nonActive-icon">
+                        <i>
                         <FontAwesomeIcon icon={faGear} />
+                        </i>
+                        <div className='icon_text'> 
+                        Settings
+                        </div>
                     </a>
                 </div>
             </div>

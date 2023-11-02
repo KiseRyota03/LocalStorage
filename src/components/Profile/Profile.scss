@@ -5,6 +5,7 @@
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 15px;
+    color: #143EC0;
 }
 .radVi,
 .radEn {
@@ -13,11 +14,64 @@
 .box-text {
     margin-bottom: 6px;
 }
+.form-switch,
+.form-check {
+    padding-left: 0;
+}
+#checkbox {
+    margin-top: 18px;    
+    margin-right: 10px;
+}
 
+.profile-box a {
+    color: black;
+}
 .profile-box {
     margin-left: 30px;
     margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #E0E0FA;
+    width: 80%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 8px;
 }
+
+.signOut-icon {
+    margin-right: 10px;
+}
+
+.profile-text i {
+
+    margin-right: 10px;
+}
+.body-content {
+    display: flex;
+    margin-left: 10px;
+
+}
+.profile-body {
+    background-color: #E0E0FA;
+    border-radius: 8px;
+    width: 80%;
+    margin-left: 30px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+
+
+}
+.form-check {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.profile-text {
+    margin: 0px 20px;
+    font-weight: 700;
+}
+
+
 
 .box-fill {
     background-color: #354A63;
@@ -41,6 +95,43 @@
     font-weight: 700;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.body-content{
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+
+.body-content::after {
+    background-color: #0099D2;
+    height:2px;
+    width: 90%;
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.body-icon {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.body-edit {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+.body-data {
+    color: #666;
+    font-size: 10px;
+}
+.body-header {
+    font-weight: 600;
 }
 
 .button-wrap {

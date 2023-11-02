@@ -2,7 +2,7 @@ import './Lesson.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faHand } from '@fortawesome/free-solid-svg-icons';
-import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -68,21 +68,43 @@ function Lesson() {
                   
                 </div>
                 <div className="barDown">
-                        <div className="barDown-items">
-                            <a href="/Video" className="nonActive-icon">
-                                <FontAwesomeIcon icon={faHand} />
-                            </a>
-                            <a href="/Text" className="nonActive-icon">
-                                <FontAwesomeIcon icon={faMessage} />
-                            </a>
-                            <a href="/Lesson" className="active-icon">
-                                <FontAwesomeIcon icon={faBook} />
-                            </a>
-                            <a href="/Profile" className="nonActive-icon">
-                                <FontAwesomeIcon icon={faGear} />
-                            </a>
+                <div className="barDown-items">
+                    <a href="/Video" className="nonActive-icon">
+                        <i>
+                        <FontAwesomeIcon icon={faHand} />
+                        </i>
+                        <div className='icon_text'> 
+                        Translate
                         </div>
-                    </div>
+                    </a>
+                    <a href="/Text" className="nonActive-icon">
+                    <i>
+                        <FontAwesomeIcon icon={faSearch} />
+                        </i>
+                        <div className='icon_text'> 
+                        Search
+                        </div>
+                    </a>
+                    <a href="/Lesson" className="active-icon">
+                    <i>
+                        <FontAwesomeIcon icon={faBook} />
+                        </i>
+                        <div className='icon_text'> 
+                        Learn
+                        </div>
+
+                    </a>
+                    
+                    <a href="/Profile" className="nonActive-icon">
+                        <i>
+                        <FontAwesomeIcon icon={faGear} />
+                        </i>
+                        <div className='icon_text'> 
+                        Settings
+                        </div>
+                    </a>
+                </div>
+            </div>
             </div>
         </div>
     );

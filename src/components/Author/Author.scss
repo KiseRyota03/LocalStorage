@@ -2,9 +2,24 @@
     margin-left: 30px;
 }
 
+.button_sign .disabled {
+
+}
 
 .button_sign {
     margin-top: 20px;
+    background-color: #143EC0;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+}
+
+
+
+.signButton-wrap {
+    text-align: center;
 }
 .res-text {
     color: #666;
@@ -27,11 +42,13 @@
 
 .res-sign {
     margin-top: 20px;
+    font-size: 12px;
 }
 .res-sign a {
-    color: #324A59;
+    color: #0099D2;
     font-size: 12px;
     text-decoration: none;
+    font-weight: 500;
 }
 
 

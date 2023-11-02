@@ -22,21 +22,9 @@ function Register() {
 
     const [successs, setSuccess] = useState(false);
    
-    // const handleSubmit = async (e) => {
-    //     if(!email || !password) {
-    //         alert("Email/Password is required!")
-    //         return;
-    //     } 
-    //         const res = await loginApi(email,password);
-    //         if(res && res.token) {
-    //             localStorage.setItem('token', res.token);
-    //         }
-    //         console.log("res", res)
-        
-    //     }
+  
 
     
-    // app.use(cors());
 
         const handlePrint = async (e) => {
             e.preventDefault();
@@ -54,7 +42,9 @@ function Register() {
         }); 
         setSuccess(true);
         const Token = response.data.body.token.accessToken;
+        const ID = response.data.body.id;
         localStorage.setItem('accessToken', (Token));
+        localStorage.setItem('id', (ID));
         console.log(JSON.stringify(response?.data));
 
     }
@@ -110,6 +100,9 @@ function Register() {
                     />
 
                 </div>
+                <div className='res-forget'>
+                <a href="./"> Forgot Password?</a>
+                </div>
                 <div className='signButton'>
 
                 <button className='signButton-click'> 
@@ -120,9 +113,7 @@ function Register() {
 
                 </form  >
 
-                <div className='res-forget'>
-                <a href="./"> Forgot Password?</a>
-                </div>
+               
 
 
              

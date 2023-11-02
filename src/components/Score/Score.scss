@@ -39,6 +39,11 @@
     text-decoration :none;
 }
 
+.icon_text {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
 
 .barDown-items {
     color: white;
@@ -46,19 +51,35 @@
     display: flex;
     align-items: center;
     height: 100%;
-    font-size: 2.2rem;    
+}
+
+.nonActive-icon i,
+.active-icon i {
+    font-size: 16px;
 }
 
 .barDown-items a {
     cursor: pointer;
     text-decoration: none;
+    text-align: center;
+    position: relative;
 }
 
 .nonActive-icon {
     color: white;
 }
+
+.active-icon ::after {
+    background-color: #0099D2;
+    height:4px;
+    width: 100%;
+    content: '';
+    position: absolute;
+    left: 0;
+    top:-6px;
+}
 .active-icon {
-    color: #e36363;
+    color: #0099D2;
 }
 .button-wrap {
     padding-top: 0px;
@@ -88,22 +109,9 @@
     padding: 6px;
 }
 
-.content-box {
-    display: flex;
-    background-color: #354A63;
-    border-radius: 4px;
-    margin: 0px 20px 20px 20px;
-    height: 145px;
-    text-decoration: none;
-}
 
 .box-image {
     padding: 10px;
     height: 140px;
 }
 
-.box-title {
-    font-size: 2rem;
-    margin-top: 10px;
-    color: white;
-}

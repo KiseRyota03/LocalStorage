@@ -6,6 +6,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import pic6 from '~/components/pic/pic6.jpg';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -31,6 +32,13 @@ function Text() {
 
     const [posts, setPosts] = useState([]);
 
+    const [search, setSearch] = useState('');
+    console.log(search)
+
+
+    
+    
+
     useEffect(() => {
         axios
             .get('http://117.6.133.148:8089/api/v1/label')
@@ -46,30 +54,21 @@ function Text() {
     console.log(lan);
     return (
         <div className="text-wrap">
-            <div className="barTop">
-                <div className="barTop-title">LGP</div>
-            </div>
-            <div className="search-wrap">
-                <input placeholder="Tìm kiếm" className="search-input"></input>
-                <button className="search-button">
-                    <i>
-                        {' '}
-                        <FontAwesomeIcon icon={faSearch} />
-                    </i>
-                </button>
-            </div>
-
+                <div className="profile-title">Search</div>
+            <form className="search-bar">
+                <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Tìm kiếm..." className="search-input"></input>
+                <i>
+                    <FontAwesomeIcon icon={faSearch} />
+                </i>
+            </form>
+            <div id='content-list'> 
             {
-                //     <a>
-                //     <button onClick= {() => {
-                //         navigate(`/lesson/${post.id}`, {state:{id:`${post.id}`}})
-                //     }} key = {post.id} className="lesson-button">{post.name}
-
-                //     </button>
-                // </a>
-                posts.map((post) => {
+                posts.filter((post) => {
+                    return search.toLowerCase() === '' ? post : post.labelVn.includes(search)
+                }).map((post) => {
                     if (lan == 1) {
                         return (
+                            
                             <a
                                 className="content-add"
                                 onClick={() => {
@@ -80,28 +79,34 @@ function Text() {
                                 key={post.id}
                             >
                                 <div className="content-box">
+                                    <div className='content-wrap'>
+
                                     <img src={pic6} className="box-image" alt=""></img>
                                     <div className="box-title" key={post.id}>
                                         {post.labelVn}
                                     </div>
-                                    <button className="box-button">CHỌN</button>
+                                    </div>
+                                <i className='content-icon'>
+                                <FontAwesomeIcon icon={faBookmark} />
+                                </i>
+
                                 </div>
                             </a>
                         );
                     } else {
                         return (
                             <a
-                            className="content-add"
-                            onClick={() => {
-                                navigate(`/Text/${post.id}`, {
-                                    state: { id: `${post.id}`, headers: `${post.labelEn}` },
-                                });
-                            }}
-                            key={post.id}
-                        >
+                                className="content-add"
+                                onClick={() => {
+                                    navigate(`/Text/${post.id}`, {
+                                        state: { id: `${post.id}`, headers: `${post.labelEn}` },
+                                    });
+                                }}
+                                key={post.id}
+                            >
                                 <div className="content-box">
                                     <img src={pic6} className="box-image" alt=""></img>
-                                    <div className="box-title" key={post.id}>
+                                    <div id="box-title" key={post.id}>
                                         {' '}
                                         {post.labelEn}{' '}
                                     </div>
@@ -112,20 +117,42 @@ function Text() {
                     }
                 })
             }
-
+           </div>
             <div className="barDown">
                 <div className="barDown-items">
                     <a href="/Video" className="nonActive-icon">
+                        <i>
                         <FontAwesomeIcon icon={faHand} />
+                        </i>
+                        <div className='icon_text'> 
+                        Translate
+                        </div>
                     </a>
-                    <a href="/Message" className="active-icon">
-                        <FontAwesomeIcon icon={faMessage} />
+                    <a href="/Text" className="active-icon">
+                    <i>
+                        <FontAwesomeIcon icon={faSearch} />
+                        </i>
+                        <div className='icon_text'> 
+                        Search
+                        </div>
                     </a>
                     <a href="/Lesson" className="nonActive-icon">
+                    <i>
                         <FontAwesomeIcon icon={faBook} />
+                        </i>
+                        <div className='icon_text'> 
+                        Learn
+                        </div>
+
                     </a>
+                    
                     <a href="/Profile" className="nonActive-icon">
+                        <i>
                         <FontAwesomeIcon icon={faGear} />
+                        </i>
+                        <div className='icon_text'> 
+                        Settings
+                        </div>
                     </a>
                 </div>
             </div>
