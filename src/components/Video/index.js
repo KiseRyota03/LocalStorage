@@ -1,11 +1,10 @@
 import './Video.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import Register from '../Register';
@@ -13,7 +12,6 @@ import axios from 'axios';
 import accessToken from '../Register';
 import { useState, useCallback, useRef } from 'react';
 import Webcam from 'react-webcam';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Video() {
@@ -29,6 +27,13 @@ function Video() {
     const mediaRecorderRef = useRef(null);
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
+
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-btn");
+  
+    const realFile = () => {
+        realFileBtn.click();
+    };
 
     const handleDataAvailable = useCallback(
         ({ data }) => {
@@ -92,57 +97,62 @@ function Video() {
         formData.append('file', state);
         axios.post('http://117.6.133.148:8089/api/v1/predict', formData).then((response) => {
             console.log(response.data.body);
-            setPosts(response.data.body.prediction);
+            setPosts(response.data.body.prediction[0]);
         });
     };
-
+    
     return (
         <div className="vid-wrap">
-            <div className="barTop">
-                <div className="barTop-title">LGP</div>
-                
-            </div>
+        
             <div className="container">
                 <div className="button-wrap">
                     <div className="container-button">
-                        <div className="buttonTitle">Nhãn dự đoán</div>
+                        <div className="buttonTitle">Nhãn dự đoán:  {posts.action_name}</div>
 
-                        {posts.map((post) => {
-                            return <div className="buttonTitle-VN">labelVn: {post.action_name}</div>;
-                        })}
+                        
+
+                       
+                   
+                        {/* <div className="buttonTitle-VN">Nhãn dự đoán: {posts.action_name}</div> */}
+               
                     </div>
                 </div>
 
                 <div className="webcam_controller">
                     <Webcam mirrored={true} audio={false} videoConstraints={videoConstraints} ref={webcamRef} />
+                    <div className='button-handler'>
+
                     {capturing ? (
-                        <button onClick={handleStopCaptureClick}>Stop Capture</button>
+                        <button onClick={handleStopCaptureClick}>
+                              <FontAwesomeIcon className="button_camera" icon={faCircle} />
+                            Stop Capture
+                            </button>
                     ) : (
                         <button onClick={handleStartCaptureClick}>
                             <FontAwesomeIcon className="button_camera" icon={faCamera} />
                             Start Capture
                         </button>
                     )}
-                    <br></br>
-                    <div className="container-camera">
-                        <input className="upload" type="file" onChange={handleApi} />
-
-                        <button className="camera_button">
+                       
+                       <input className="upload" id="real-file" type="file" hidden="hidden" onChange={handleApi} />
+                        
+                        <button id= "custom-btn" onClick= {realFile} className="camera_button">
                             <i>
                                 <FontAwesomeIcon icon={faFolder} />
                             </i>
                             Upload
+
                         </button>
-                    </div>
                     {recordedChunks.length > 0 && (
                         <button onClick={handleDownload}>
                             <i>
                             
-                                <FontAwesomeIcon icon={faDownload} />
+                                <FontAwesomeIcon  className="button_camera" icon={faDownload} />
                             </i>
                             Download
                         </button>
                     )}
+                    </div>
                 </div>
             </div>
             <div className="barDown">

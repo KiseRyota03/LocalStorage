@@ -5,15 +5,45 @@
 .lesson-wrap {
     display: grid;
     grid-template-columns: auto auto;
-    
-}
-.lesson-item {
-    text-align: center;
-    background-image: url('~/src/components/pic/pic7.jpg') ;
-    background-size: cover;
-    vertical-align: bottom;
+    grid-gap: 20px;   
 }
 
+// background-image: url('~/src/components/pic/pic7.jpg') ;
+
+.lesson-item {
+    background-color: #CBF2FF;
+    border-radius: 5px;
+    text-decoration: none;
+    width: 200px;
+}
+
+.lesson-title {
+    font-size: 12px;
+    color: #143EC0;
+    font-weight: 500;
+    margin-left: 10px;    
+}
+
+.lesson-des i {
+    margin-right: 10px;
+    background-color: #0082E3;
+    border-radius: 50%;
+    padding: 4px 10px;
+    color: white;
+    font-size: 12px;
+}
+.lesson-image {
+    padding: 10px;
+    height: 150px;
+    margin-right: 20px;
+    width: 100%;
+    border-radius: 5px;
+}
+.lesson-des {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 14px;
+}
 .lesson-button {
     font-size: 12px;
     color: black;

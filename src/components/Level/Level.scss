@@ -3,15 +3,23 @@
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 10px;
+    text-decoration: none;
 }
 
 .level-heading {
     margin-left: 20px;
+    text-decoration: none;   
+}
+.lesson-add {
+    text-decoration: none;   
+
 }
 .level-top {
     justify-content: center;
     display: flex;
-    margin-top: 15px;
+    color: #143EC0;
+    font-weight: 700;
+    font-size: 2rem;
 }
 .level-add {
     text-decoration: none;

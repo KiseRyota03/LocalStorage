@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +18,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 function Text() {
     const token = localStorage.getItem('accessToken');
     const lan = localStorage.getItem('lan');
+
+    const [search, setSearch] = useState('');
 
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -54,18 +56,13 @@ function Text() {
 
     return (
         <div className="text-wrap">
-            <div className="barTop">
-                <div className="barTop-title">
-                    <a onClick={() => navigate(-1)} className="arrow-return">
+            <a onClick={() => navigate(-1)} className="arrow-return">
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
                     </a>
-                    LGP
-                </div>
-            </div>
             <div className="score-heading">
-                <h2>{title}</h2>
+                <h2 className='point-title'>{title}</h2>
                 <h4>Cấp độ {param.lessonID}</h4>
             </div>
             {posts.map((post) => {
@@ -74,27 +71,30 @@ function Text() {
                         {post.listLabel.map((pos) => {
                             if (post.levelId == param.lessonID) {
                                 return (
-                                    <div
-                                        onClick={() => {
-                                            navigate(`/LearnByWord`, {
-                                                state: {
-                                                    title: `${pos.labelVn}`,
-                                                    levelId: `${pos.levelId}`,
-                                                    subjectId: `${pos.subjectId}`,
-                                                },
-                                            });
-                                        }}
-                                        className="content-box"
-        
-        
-                                    >
-                                        
-                                        <img src={pic6} className="box-image" alt=""></img>
-                                        <div className="box-title" key={pos.id}>
-                                            {pos.labelVn}
-                                        </div>
-                                        <button className="box-button">CHỌN</button>
+                                    <a className='content-add'
+                                    onClick={() => {
+                                        navigate(`/LearnByWord`, {
+                                            state: {
+                                                title: `${pos.labelVn}`,
+                                                levelId: `${pos.levelId}`,
+                                                subjectId: `${pos.subjectId}`,
+                                            },
+                                        });
+                                    }}>
+                                      <div className="content-box">
+                                    <div className='content-wrap'>
+
+                                    <img src={pic6} className="box-image" alt=""></img>
+                                    <div className="box-title" key={pos.id}>
+                                        {pos.labelVn}
                                     </div>
+                                    </div>
+                                {/* <i className='content-icon'>
+                                <FontAwesomeIcon icon={faBookmark} />
+                                </i> */}
+
+                                </div>
+                                    </a>
                                 );
                             }
                         })}
@@ -105,27 +105,40 @@ function Text() {
             <div
                 onClick={() => {
                     navigate(`/Point`, {
-                        state: { levelId: `${param.lessonID}`, subjectId: `${level_title}` },
+                        state: { levelId: `${param.lessonID}`, subjectId: `${level_title}`, pointTitle: `${title}` },
                     });
                 }}
                 className="button-wrap"
             >
-                    <button className="profile-button">Score</button>
+                <button className="profile-button">Score</button>
             </div>
 
             <div className="barDown">
                 <div className="barDown-items">
                     <a href="/Video" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faHand} />
+                        <i>
+                            <FontAwesomeIcon icon={faHand} />
+                        </i>
+                        <div className="icon_text">Translate</div>
                     </a>
                     <a href="/Text" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faMessage} />
+                        <i>
+                            <FontAwesomeIcon icon={faSearch} />
+                        </i>
+                        <div className="icon_text">Search</div>
                     </a>
                     <a href="/Lesson" className="active-icon">
-                        <FontAwesomeIcon icon={faBook} />
+                        <i>
+                            <FontAwesomeIcon icon={faBook} />
+                        </i>
+                        <div className="icon_text">Learn</div>
                     </a>
+
                     <a href="/Profile" className="nonActive-icon">
-                        <FontAwesomeIcon icon={faGear} />
+                        <i>
+                            <FontAwesomeIcon icon={faGear} />
+                        </i>
+                        <div className="icon_text">Settings</div>
                     </a>
                 </div>
             </div>

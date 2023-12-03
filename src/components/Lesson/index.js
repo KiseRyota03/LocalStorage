@@ -7,6 +7,8 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import pic7 from '~/components/pic/pic7.jpg';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 function Lesson() {
     let users = [];
@@ -41,70 +43,66 @@ function Lesson() {
 
     return (
         <div className="text-lesson">
-            <div className="barTop">
-                <div className="barTop-title">LGP</div>
-            </div>
+            
+            <div className="profile-title">Learn</div>
+
             <div className="lesson-contain">
                 <div className="lesson-wrap">
                     {posts.map((post) => {
                         return (
-                            <div className="lesson-item">
-                                <a className="lesson-click">
-                                    <button
-                                        onClick={() => {
-                                            navigate(`/lesson/${post.id}`, {
-                                                state: { id: `${post.id}`, name: `${post.name}` },
-                                            });
-                                        }}
-                                        key={post.id}
-                                        className="lesson-button"
-                                    >
-                                        {post.name}
-                                    </button>
-                                </a>
-                            </div>
+                            <a
+                                className="lesson-item"
+                                onClick={() => {
+                                    navigate(`/lesson/${post.id}`, {
+                                        state: { id: `${post.id}`, name: `${post.name}` },
+                                    });
+                                }}
+                                key={post.id}
+                            >
+                                <img src={pic7} className="lesson-image" alt=""></img>
+
+                                <div className="lesson-des">
+                                    <div className='lesson-title'>
+                                    {post.name}
+
+                                    </div>
+                                    <i>
+                                    <FontAwesomeIcon icon={faChevronRight} />
+                                    </i>
+                                    </div>
+                            </a>
                         );
                     })}
-                  
                 </div>
                 <div className="barDown">
-                <div className="barDown-items">
-                    <a href="/Video" className="nonActive-icon">
-                        <i>
-                        <FontAwesomeIcon icon={faHand} />
-                        </i>
-                        <div className='icon_text'> 
-                        Translate
-                        </div>
-                    </a>
-                    <a href="/Text" className="nonActive-icon">
-                    <i>
-                        <FontAwesomeIcon icon={faSearch} />
-                        </i>
-                        <div className='icon_text'> 
-                        Search
-                        </div>
-                    </a>
-                    <a href="/Lesson" className="active-icon">
-                    <i>
-                        <FontAwesomeIcon icon={faBook} />
-                        </i>
-                        <div className='icon_text'> 
-                        Learn
-                        </div>
+                    <div className="barDown-items">
+                        <a href="/Video" className="nonActive-icon">
+                            <i>
+                                <FontAwesomeIcon icon={faHand} />
+                            </i>
+                            <div className="icon_text">Translate</div>
+                        </a>
+                        <a href="/Text" className="nonActive-icon">
+                            <i>
+                                <FontAwesomeIcon icon={faSearch} />
+                            </i>
+                            <div className="icon_text">Search</div>
+                        </a>
+                        <a href="/Lesson" className="active-icon">
+                            <i>
+                                <FontAwesomeIcon icon={faBook} />
+                            </i>
+                            <div className="icon_text">Learn</div>
+                        </a>
 
-                    </a>
-                    
-                    <a href="/Profile" className="nonActive-icon">
-                        <i>
-                        <FontAwesomeIcon icon={faGear} />
-                        </i>
-                        <div className='icon_text'> 
-                        Settings
-                        </div>
-                    </a>
+                        <a href="/Profile" className="nonActive-icon">
+                            <i>
+                                <FontAwesomeIcon icon={faGear} />
+                            </i>
+                            <div className="icon_text">Settings</div>
+                        </a>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     );

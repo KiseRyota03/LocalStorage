@@ -99,18 +99,23 @@ function Text() {
                                 className="content-add"
                                 onClick={() => {
                                     navigate(`/Text/${post.id}`, {
-                                        state: { id: `${post.id}`, headers: `${post.labelEn}` },
+                                        state: { id: `${post.id}`, headers: `${post.labelVn}` },
                                     });
                                 }}
                                 key={post.id}
                             >
                                 <div className="content-box">
+                                    <div className='content-wrap'>
+
                                     <img src={pic6} className="box-image" alt=""></img>
-                                    <div id="box-title" key={post.id}>
-                                        {' '}
-                                        {post.labelEn}{' '}
+                                    <div className="box-title" key={post.id}>
+                                        {post.labelEn}
                                     </div>
-                                    <button className="box-button">PICK</button>
+                                    </div>
+                                <i className='content-icon'>
+                                <FontAwesomeIcon icon={faBookmark} />
+                                </i>
+
                                 </div>
                             </a>
                         );

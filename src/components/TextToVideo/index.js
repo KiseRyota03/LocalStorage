@@ -49,16 +49,11 @@ function Word() {
     }, []);
     return (
         <div className="text-wrap">
-            <div className="barTop">
-                <div className="barTop-title">
-                    <a href="/Text" className="arrow-return">
+             <a onClick={() => navigate(-1)} className="arrow-return">
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
                     </a>
-                    LGP
-                </div>
-            </div>
             <div className="word-title">{headers}</div>
 
             <div className="video-contain">
@@ -76,12 +71,6 @@ function Word() {
 
        
 
-            <div className="button-wrap">
-                <a href="/Text
-                ">
-                    <button className="profile-button">Quay lại</button>
-                </a>
-            </div>
         </div>
     );
 }

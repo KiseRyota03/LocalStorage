@@ -2,7 +2,9 @@ import './Word.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
 import { useState, useCallback, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
@@ -24,6 +26,13 @@ function Word() {
         height: { min: 630 },
         aspectRatio: 0.6666666667,
         facingMode: 'user',
+    };
+
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-btn");
+  
+    const realFile = () => {
+        realFileBtn.click();
     };
 
     const webcamRef = useRef(null);
@@ -116,16 +125,11 @@ function Word() {
 
     return (
         <div className="text-wrap">
-            <div className="barTop">
-                <div className="barTop-title">
-                    <a onClick={() => navigate(-1)} className="arrow-return">
+           <a onClick={() => navigate(-1)} className="arrow-return">
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
                     </a>
-                    LGP
-                </div>
-            </div>
             <div className="word-title">{heading}</div>
            
             <div className="video-contain">
@@ -142,36 +146,50 @@ function Word() {
             </div>
                 
                 <div className="DownContain">
-              
-                    <div className="webcam_controller">
-                    <Webcam mirrored={true} audio={true} videoConstraints={videoConstraints} ref={webcamRef} />
+                   <div className="webcam_controller">
+                    <Webcam mirrored={true} audio={false} videoConstraints={videoConstraints} ref={webcamRef} />
+                    <div className='button-handler'>
+
                     {capturing ? (
-                        <button onClick={handleStopCaptureClick}>Stop Capture</button>
+                        <button onClick={handleStopCaptureClick}>
+                              <FontAwesomeIcon className="button_camera" icon={faCircle} />
+                            Stop Capture
+                            </button>
                     ) : (
-                        <button onClick={handleStartCaptureClick}> 
-                        <FontAwesomeIcon className='button_camera' icon={faCamera} />
-                        Start Capture</button>
+                        <button onClick={handleStartCaptureClick}>
+                            <FontAwesomeIcon className="button_camera" icon={faCamera} />
+                            Start Capture
+                        </button>
                     )}
-                    <br></br>
-                    {recordedChunks.length > 0 && <button onClick={handleDownload}>Download</button>}
-                </div>
+                       
+                       <input className="upload" id="real-file" type="file" hidden="hidden" onChange={handleApi} />
+                        
+                        <button id= "custom-btn" onClick= {realFile} className="camera_button">
+                            <i>
+                                <FontAwesomeIcon icon={faFolder} />
+                            </i>
+                            Upload
 
-
-                <div className="container-camera">
-                    <input className="upload" type="file" onChange ={handleApi} />
-
-                    <button className="camera_button">
-                        <i>
-                            <FontAwesomeIcon icon={faFolder} />
-                        </i>
-                        Upload
-                    </button>
+                        </button>
+                    {recordedChunks.length > 0 && (
+                        <button onClick={handleDownload}>
+                            <i>
+                            
+                                <FontAwesomeIcon  className="button_camera" icon={faDownload} />
+                            </i>
+                            Download
+                        </button>
+                    )}
+                    </div>
                 </div>
                 { scoring ? (  <div className='video_score'>
+                    <div className='video_score-text'> 
+
                     Score: {posts}
+                    </div>
                 </div>
                 ): (
-                    <div className='video_score'>
+                    <div>
                 </div>
                 )}
                

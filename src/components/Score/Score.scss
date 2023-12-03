@@ -18,8 +18,19 @@
 }
 .score-heading {
     text-align: center;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
+
+.score-heading h2 {
+    justify-content: center;
+    display: flex;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #143EC0;
+}
+
+
+
 
 .container-button {
     color: black;
@@ -34,6 +45,7 @@
     display: flex;
     padding-top: 30px;
 }
+
 
 .content-add {
     text-decoration :none;

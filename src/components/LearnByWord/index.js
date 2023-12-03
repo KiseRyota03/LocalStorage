@@ -1,27 +1,92 @@
 import './LearnByWord.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
-// import { faHand } from '@fortawesome/free-solid-svg-icons'
-// import { faBook } from '@fortawesome/free-solid-svg-icons'
-// import { faGear } from '@fortawesome/free-solid-svg-icons'
-// import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-import { useLocation } from 'react-router';
-import { useState, useEffect } from 'react';
-import lan from '~/components/Profile';
-import { useNavigate } from 'react-router-dom';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import Webcam from 'react-webcam';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from '../api/axios';
 import ReactPlayer from 'react-player';
 
-function Word() {
-    const token = localStorage.getItem('accessToken');
-    const lan = localStorage.getItem('lan');
+
+function LearnByWord() {
+    //webcam
+
     const navigate = useNavigate();
 
     const { state } = useLocation();
-    const { title, levelId, subjectId } = state; // Read values passed on state
-    console.log(title, levelId, subjectId);
+    const { title } = state; // Read values passed on state
+
+    const videoConstraints = {
+        width: { min: 420 },
+        height: { min: 630 },
+        aspectRatio: 0.6666666667,
+        facingMode: 'user',
+    };
+
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-btn");
+  
+    const realFile = () => {
+        realFileBtn.click();
+    };
+
+    const webcamRef = useRef(null);
+    const mediaRecorderRef = useRef(null);
+    const [capturing, setCapturing] = useState(false);
+    const [recordedChunks, setRecordedChunks] = useState([]);
+    const [scoring,setScoring] = useState(false);
+
+    const handleDataAvailable = useCallback(
+        ({ data }) => {
+            if (data.size > 0) {
+                setRecordedChunks((prev) => prev.concat(data));
+            }
+        },
+        [setRecordedChunks],
+    );
+    
+
+    const handleStartCaptureClick = useCallback(() => {
+        setCapturing(true);
+        mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+            mimeType: 'video/webm',
+        });
+        mediaRecorderRef.current.addEventListener('dataavailable', handleDataAvailable);
+        mediaRecorderRef.current.start();
+    }, [webcamRef, setCapturing, mediaRecorderRef, handleDataAvailable]);
+
+    const handleStopCaptureClick = useCallback(() => {
+        mediaRecorderRef.current.stop();
+        setCapturing(false);
+    }, [mediaRecorderRef, setCapturing]);
+
+    const handleDownload = useCallback(() => {
+        if (recordedChunks.length) {
+            const blob = new Blob(recordedChunks, {
+                type: 'video/webm',
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            document.body.appendChild(a);
+            a.style = 'display: none';
+            a.href = url;
+            a.download = 'react-webcam-stream-capture.webm';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            setRecordedChunks([]);
+        }
+    }, [recordedChunks]);
+
+    const [stat, setStat] = useState('');
+    const [posts, setPosts] = useState([]);
+    const [lessons, setLessons] = useState([]);
+
+    const token = localStorage.getItem('accessToken');
 
     axios.interceptors.request.use(
         (config) => {
@@ -32,9 +97,6 @@ function Word() {
             return Promise.reject(error);
         },
     );
-
-    const [lessons, setLessons] = useState([]);
-    const location = useLocation();
 
     useEffect(() => {
         axios
@@ -48,31 +110,93 @@ function Word() {
             });
     }, []);
 
+    const handleApi = (e) => {
+        e.preventDefault();
+        setStat(e.target.files[0]);
+        const formData = new FormData();
+        formData.append('file', stat);
+        setScoring(true);
+        axios.post(`http://117.6.133.148:8089/api/v1/checkVideo?label=${title}`, formData).then((response) => {
+            console.log(response.data.body.score);
+            setPosts(response.data.body.score);
+        });
+    };
+
     return (
         <div className="text-wrap">
-            <div className="barTop">
-                <div className="barTop-title">
-                    <a onClick={() => navigate(-1)} className="arrow-return">
+           <a onClick={() => navigate(-1)} className="arrow-return">
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
                     </a>
-                    LGP
-                </div>
-            </div>
-            <div className="score-heading">
-                <h2>{title}</h2>
-            </div>
+            <div className="word-title">{title}</div>
+           
             <div className="video-contain">
-                <ReactPlayer url={lessons} width="300px" height="170px" playing={true} controls={true} />
+            
+            <ReactPlayer
+                url= {lessons}
+                width="300px"
+                height="170px"
+                playing={true}
+                controls={true}
+            />
+
+          
             </div>
-            <div className="button-wrap">
-                <a onClick={() => navigate(-1)}>
-                    <button className="profile-button">Quay lại</button>
-                </a>
-            </div>
+                
+                <div className="DownContain">
+                   <div className="webcam_controller">
+                    <Webcam mirrored={true} audio={false} videoConstraints={videoConstraints} ref={webcamRef} />
+                    <div className='button-handler'>
+
+                    {capturing ? (
+                        <button onClick={handleStopCaptureClick}>
+                              <FontAwesomeIcon className="button_camera" icon={faCircle} />
+                            Stop Capture
+                            </button>
+                    ) : (
+                        <button onClick={handleStartCaptureClick}>
+                            <FontAwesomeIcon className="button_camera" icon={faCamera} />
+                            Start Capture
+                        </button>
+                    )}
+                       
+                       <input className="upload" id="real-file" type="file" hidden="hidden" onChange={handleApi} />
+                        
+                        <button id= "custom-btn" onClick= {realFile} className="camera_button">
+                            <i>
+                                <FontAwesomeIcon icon={faFolder} />
+                            </i>
+                            Upload
+
+                        </button>
+                    {recordedChunks.length > 0 && (
+                        <button onClick={handleDownload}>
+                            <i>
+                            
+                                <FontAwesomeIcon  className="button_camera" icon={faDownload} />
+                            </i>
+                            Download
+                        </button>
+                    )}
+                    </div>
+                </div>
+                { scoring ? (  <div className='video_score'>
+                    <div className='video_score-text'> 
+
+                    Score: {posts}
+                    </div>
+                </div>
+                ): (
+                    <div>
+                </div>
+                )}
+               
+                </div>
+
+           
         </div>
     );
 }
 
-export default Word;
+export default LearnByWord;

@@ -93,16 +93,28 @@
 
 }
 
-.upload {
+.button-handler {
+    display: flex;
+    justify-content: flex-start;
+}
+.buttonTitle {
+    font-size: 16px;
+}
+// .upload {
+//     position: relative;
+//     max-width: 50px;
+//     height: 60px;
+//     z-index: 3;
+// }
+
+.camera_button input {
     position: relative;
-    max-width: 50px;
-    height:46px;
-    z-index: 2;
-    opacity: 0;
+        max-width: 50px;
+        height: 80px;
+        z-index: 3;
 }
 
 .camera_button {
-    position: absolute;
     width:30%;
     height:40px;
     z-index: 1;
