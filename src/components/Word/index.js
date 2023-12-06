@@ -22,8 +22,8 @@ function Word() {
     const { heading } = state; // Read values passed on state
 
     const videoConstraints = {
-        width: { min: 420 },
-        height: { min: 630 },
+        width: 420,
+        height: 630,
         aspectRatio: 0.6666666667,
         facingMode: 'user',
     };
