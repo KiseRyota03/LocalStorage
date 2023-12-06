@@ -28,11 +28,16 @@ function Word() {
         facingMode: 'user',
     };
 
-    const realFileBtn = document.getElementById("real-file");
+    // const realFileBtn = document.getElementById("real-file");
     const customBtn = document.getElementById("custom-btn");
   
     const realFile = () => {
-        realFileBtn.click();
+        const realFileBtn = document.getElementById("real-file");
+        if (realFileBtn){
+            realFileBtn.click();
+        }else{
+            console.log("realFileBtn null")
+        }
     };
 
     const webcamRef = useRef(null);
