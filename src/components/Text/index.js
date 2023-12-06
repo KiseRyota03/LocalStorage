@@ -37,8 +37,6 @@ function Text() {
 
 
     
-    
-
     useEffect(() => {
         axios
             .get('https://ptit.io.vn/api/v1/label')

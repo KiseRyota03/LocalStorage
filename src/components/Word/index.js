@@ -39,7 +39,6 @@ function Word() {
     const mediaRecorderRef = useRef(null);
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
-    const [scoring,setScoring] = useState(false);
 
     const handleDataAvailable = useCallback(
         ({ data }) => {
@@ -75,9 +74,9 @@ function Word() {
             blob.lastModifiedDate = new Date();
             blob.name = 'data.webm';
             formData.append('file', blob);
-            axios.post('https://ptit.io.vn/api/v1/predict', formData).then((response) => {
+            axios.post(`https://ptit.io.vn/api/v1/checkVideo?label=${heading}`, formData).then((response) => {
                 console.log(response.data.body);
-                setPosts(response.data.body.prediction[0]);
+                setPosts(response.data.body.score);
             });
             setRecordedChunks([]);
         }
@@ -129,12 +128,10 @@ function Word() {
     }, []);
 
     const handleApi = (e) => {
-        console.log('1');
         e.preventDefault();
         setStat(e.target.files[0]);
         const formData = new FormData();
         formData.append('file', stat);
-        setScoring(true);
         axios.post(`https://ptit.io.vn/api/v1/checkVideo?label=${heading}`, formData).then((response) => {
             console.log(response.data.body.score);
             setPosts(response.data.body.score);
@@ -200,16 +197,13 @@ function Word() {
                     )}
                     </div>
                 </div>
-                { scoring ? (  <div className='video_score'>
+                <div className='video_score'>
                     <div className='video_score-text'> 
 
                     Score: {posts}
                     </div>
                 </div>
-                ): (
-                    <div>
-                </div>
-                )}
+                
                
                 </div>
 

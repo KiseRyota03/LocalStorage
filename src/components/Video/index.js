@@ -29,7 +29,6 @@ function Video() {
     const [recordedChunks, setRecordedChunks] = useState([]);
 
     const realFileBtn = document.getElementById("real-file");
-    const customBtn = document.getElementById("custom-btn");
 
     const realFile = () => {
         realFileBtn.click();
@@ -134,6 +133,7 @@ function Video() {
                 <div className="webcam_controller">
                     <Webcam mirrored={true} audio={false} videoConstraints={videoConstraints} ref={webcamRef}/>
                     <div className='button-handler'>
+                    <input className="upload" id="real-file" type="file" hidden="hidden" onChange={handleApi}/>
 
                         {capturing ? (
                             <button onClick={handleStopCaptureClick}>
@@ -147,15 +147,14 @@ function Video() {
                             </button>
                         )}
 
-                        <input className="upload" id="real-file" type="file" hidden="hidden" onChange={handleApi}/>
 
                         <button id="custom-btn" onClick={realFile} className="camera_button">
                             <i>
                                 <FontAwesomeIcon icon={faFolder}/>
                             </i>
                             Upload
-
                         </button>
+
                         {recordedChunks.length > 0 && (
                             <button onClick={handleDownload}>
                                 <i>
