@@ -70,7 +70,7 @@ function Profile() {
 
     useEffect(() => {
         axios
-            .get(`http://117.6.133.148:8089/api/v1/user/${id}`)
+            .get(`https://ptit.io.vn/api/v1/user/${id}`)
             .then((response) => {
                 console.log(response.data.body);
                 setEmail(response.data.body.email);
@@ -86,7 +86,7 @@ function Profile() {
     // console.log(email, dob, location, phone);
     // const handleUpdate = (e) => {
     //     e.preventDefault();
-    //     axios.put('http://117.6.133.148:8089/api/v1/user', {post})
+    //     axios.put('https://ptit.io.vn/api/v1/user', {post})
     //         .then((response) => {
     //             console.log(response.data.body);
     //         })
@@ -111,7 +111,7 @@ function Profile() {
                         </i>
                         Username
                     </div>
-                    <a href="/register" onClick={handleClick}>
+                    <a href={process.env.PUBLIC_URL + "/register"} onClick={handleClick}>
                         <i className="signOut-icon">
                             <FontAwesomeIcon icon={faSignOutAlt} />
                         </i>
@@ -192,26 +192,26 @@ function Profile() {
 
             <div className="barDown">
                 <div className="barDown-items">
-                    <a href="/Video" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Video"} className="nonActive-icon">
                         <i>
                             <FontAwesomeIcon icon={faHand} />
                         </i>
                         <div className="icon_text">Translate</div>
                     </a>
-                    <a href="/Text" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Text"} className="nonActive-icon">
                         <i>
                             <FontAwesomeIcon icon={faSearch} />
                         </i>
                         <div className="icon_text">Search</div>
                     </a>
-                    <a href="/Lesson" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Lesson"} className="nonActive-icon">
                         <i>
                             <FontAwesomeIcon icon={faBook} />
                         </i>
                         <div className="icon_text">Learn</div>
                     </a>
 
-                    <a href="/Profile" className="active-icon">
+                    <a href={process.env.PUBLIC_URL + "/Profile"} className="active-icon">
                         <i>
                             <FontAwesomeIcon icon={faGear} />
                         </i>

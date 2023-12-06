@@ -70,7 +70,7 @@ const Author = () => {
     e.preventDefault();
     setSuccess(true);
     console.log({email, password})
-    axios.post('http://117.6.133.148:8089/api/v1/register', {
+    axios.post('https://ptit.io.vn/api/v1/register', {
     headers:{'Access-Control-Allow-Origin': true,
 },      
     name: name,
@@ -94,13 +94,13 @@ const Author = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="/register">Sign In</a>
+                        <a href={process.env.PUBLIC_URL + "/register"}>Sign In</a>
                     </p>
                 </section>
             ) : (
 
     <section className='res-wrap'>
-      <a href="/register" className='res-back'>
+      <a href={process.env.PUBLIC_URL + "/register"} className='res-back'>
         <FontAwesomeIcon icon={faArrowLeft} />
       </a>
 
@@ -180,7 +180,7 @@ const Author = () => {
 
     <div className='res-sign'>
     By registering an account, you agree to all of {" "}
-       <a href=""> 
+       <a href={process.env.PUBLIC_URL}>
        our policy.</a>
       </div>
       

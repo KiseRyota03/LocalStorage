@@ -38,7 +38,7 @@ function Point() {
     const [lessons, setLessons] = useState([]);
     useEffect(() => {
         axios
-            .post(`http://117.6.133.148:8089/api/v1/scoreWithSubject?levelIds=${levelId}?subjectIds=${subjectId}`)
+            .post(`https://ptit.io.vn/api/v1/scoreWithSubject?levelIds=${levelId}?subjectIds=${subjectId}`)
             .then((response) => {
                 setPosts(response.data.body.scoreList);
                 console.log(response.data.body);
@@ -49,7 +49,7 @@ function Point() {
     }, []);
     
     useEffect(() => {
-        axios.get(`http://117.6.133.148:8089/api/v1/list-labels-by-subjectId?&subjectId=${subjectId}`)    
+        axios.get(`https://ptit.io.vn/api/v1/list-labels-by-subjectId?&subjectId=${subjectId}`)    
             .then((response) => {
                 setLessons(response.data.body.listLevel);
                 console.log(response.data.body);

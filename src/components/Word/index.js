@@ -100,7 +100,7 @@ function Word() {
 
     useEffect(() => {
         axios
-            .get(`http://117.6.133.148:8089/api/v1/video?label=${heading}`)
+            .get(`https://ptit.io.vn/api/v1/video?label=${heading}`)
             .then((response) => {
                 console.log(response.data.body.video_url);
                 setLessons(response.data.body.video_url);
@@ -117,7 +117,7 @@ function Word() {
         const formData = new FormData();
         formData.append('file', stat);
         setScoring(true);
-        axios.post(`http://117.6.133.148:8089/api/v1/checkVideo?label=${heading}`, formData).then((response) => {
+        axios.post(`https://ptit.io.vn/api/v1/checkVideo?label=${heading}`, formData).then((response) => {
             console.log(response.data.body.score);
             setPosts(response.data.body.score);
         });

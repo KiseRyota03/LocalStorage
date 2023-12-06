@@ -38,7 +38,7 @@ function Word() {
 
     useEffect(() => {
         axios
-            .get(`http://117.6.133.148:8089/api/v1/video?label=${headers}`)
+            .get(`https://ptit.io.vn/api/v1/video?label=${headers}`)
             .then((response) => {
                 console.log(response.data.body);
                 setLessons(response.data.body.video_url);

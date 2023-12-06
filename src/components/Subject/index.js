@@ -13,7 +13,7 @@ function Subject() {
             <div className='barTop'>
 
                 <div className='barTop-title'>
-                    <a href='/level' className='arrow-return'>
+                    <a href={process.env.PUBLIC_URL + '/level'} className='arrow-return'>
                         <i>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </i>
@@ -33,7 +33,7 @@ function Subject() {
                 <div className='box-title'>
                     Từ 1
                 </div>
-                <a href='/word'>
+                <a href={process.env.PUBLIC_URL + '/word'}>
                     <button className='box-button'>
                         CHỌN
                     </button>
@@ -47,7 +47,7 @@ function Subject() {
                 <div className='box-title'>
                     Từ 2
                 </div>
-                <a href='/word'>
+                <a href={process.env.PUBLIC_URL + '/word'}>
                     <button className='box-button'>
                         CHỌN
                     </button>
@@ -62,7 +62,7 @@ function Subject() {
                 <div className='box-title'>
                     Từ 3
                 </div>
-                <a href='/word'>
+                <a href={process.env.PUBLIC_URL + '/word'}>
                     <button className='box-button'>
                         CHỌN
                     </button>
@@ -77,13 +77,13 @@ function Subject() {
                 <div className='box-title'>
                     Từ 4
                 </div>
-                <a href='/word'>
+                <a href={process.env.PUBLIC_URL + '/word'}>
                     <button className='box-button'>
                         CHỌN
                     </button>
                 </a>
             </div>
-            <a href='/point' className='but-wrap'>
+            <a href={process.env.PUBLIC_URL + '/point'} className='but-wrap'>
                 <button className='profile-button'>
                     Xem điểm
                 </button>

@@ -68,7 +68,7 @@ function Video() {
             blob.lastModifiedDate = new Date();
             blob.name = 'data.webm';
             formData.append('file', blob);
-            axios.post('http://117.6.133.148:8089/api/v1/predict', formData).then((response) => {
+            axios.post('https://ptit.io.vn/api/v1/predict', formData).then((response) => {
                 console.log(response.data.body);
                 setPosts(response.data.body.prediction[0]);
             });
@@ -114,7 +114,7 @@ function Video() {
         setState(e.target.files[0]);
         const formData = new FormData();
         formData.append('file', state);
-        axios.post('http://117.6.133.148:8089/api/v1/predict', formData).then((response) => {
+        axios.post('https://ptit.io.vn/api/v1/predict', formData).then((response) => {
             console.log(response.data.body);
             setPosts(response.data.body.prediction[0]);
         });
@@ -170,7 +170,7 @@ function Video() {
             </div>
             <div className="barDown">
                 <div className="barDown-items">
-                    <a href="/Video" className="active-icon">
+                    <a href={process.env.PUBLIC_URL + "/Video"} className="active-icon">
                         <i>
                             <FontAwesomeIcon icon={faHand}/>
                         </i>
@@ -178,7 +178,7 @@ function Video() {
                             Translate
                         </div>
                     </a>
-                    <a href="/Text" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Text"} className="nonActive-icon">
                         <i>
                             <FontAwesomeIcon icon={faSearch}/>
                         </i>
@@ -186,7 +186,7 @@ function Video() {
                             Search
                         </div>
                     </a>
-                    <a href="/Lesson" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Lesson"} className="nonActive-icon">
                         <i>
                             <FontAwesomeIcon icon={faBook}/>
                         </i>
@@ -196,7 +196,7 @@ function Video() {
 
                     </a>
 
-                    <a href="/Profile" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Profile"} className="nonActive-icon">
                         <i>
                             <FontAwesomeIcon icon={faGear}/>
                         </i>

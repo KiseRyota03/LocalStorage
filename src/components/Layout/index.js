@@ -14,13 +14,13 @@ function Layout() {
                     <div className="ins-text">In what way do you want to see our instructions?</div>
                     <div>
 
-                    <a href="/register">
+                    <a href={process.env.PUBLIC_URL + "/register"}>
                         <button className="layout-btn">By written language</button>
                     </a>
                     </div>
                     <div>
 
-                    <a href="/register">
+                    <a href={process.env.PUBLIC_URL + "/register"}>
                         <button className="layout-btn">By sign language</button>
                     </a>
                     </div>

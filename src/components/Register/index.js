@@ -26,7 +26,7 @@ function Register() {
     const handlePrint = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://117.6.133.148:8089/api/v1/login',
+            const response = await axios.post('https://ptit.io.vn/api/v1/login',
                 JSON.stringify({email, password}),
                 {
                     headers: {
@@ -95,7 +95,7 @@ function Register() {
 
                     </div>
                     <div className='res-forget'>
-                        <a href="./"> Forgot Password?</a>
+                        <a href={process.env.PUBLIC_URL}> Forgot Password?</a>
                     </div>
                     <div className='signButton'>
 
@@ -113,7 +113,7 @@ function Register() {
                         Don't have an account yet ?
                     </div>
                     <div className='res-nav_click'>
-                        <a href="/author">Register now! </a>
+                        <a href={process.env.PUBLIC_URL + "/author"}>Register now! </a>
                     </div>
 
                 </div>

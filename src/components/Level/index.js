@@ -34,7 +34,7 @@ function Level() {
     const [lessons, setLessons] = useState([]);
 
     useEffect(() => {
-        const api_url = `http://117.6.133.148:8089/api/v1/list-labels-by-subjectId?&subjectId=${location.state.id}`;
+        const api_url = `https://ptit.io.vn/api/v1/list-labels-by-subjectId?&subjectId=${location.state.id}`;
         axios
             .get(api_url)
             .then((response) => {
@@ -97,26 +97,26 @@ function Level() {
             })}
              <div className="barDown">
                     <div className="barDown-items">
-                        <a href="/Video" className="nonActive-icon">
+                        <a href={process.env.PUBLIC_URL + "/Video"} className="nonActive-icon">
                             <i>
                                 <FontAwesomeIcon icon={faHand} />
                             </i>
                             <div className="icon_text">Translate</div>
                         </a>
-                        <a href="/Text" className="nonActive-icon">
+                        <a href={process.env.PUBLIC_URL + "/Text"} className="nonActive-icon">
                             <i>
                                 <FontAwesomeIcon icon={faSearch} />
                             </i>
                             <div className="icon_text">Search</div>
                         </a>
-                        <a href="/Lesson" className="active-icon">
+                        <a href={process.env.PUBLIC_URL + "/Lesson"} className="active-icon">
                             <i>
                                 <FontAwesomeIcon icon={faBook} />
                             </i>
                             <div className="icon_text">Learn</div>
                         </a>
 
-                        <a href="/Profile" className="nonActive-icon">
+                        <a href={process.env.PUBLIC_URL + "/Profile"} className="nonActive-icon">
                             <i>
                                 <FontAwesomeIcon icon={faGear} />
                             </i>

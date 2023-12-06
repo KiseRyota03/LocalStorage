@@ -41,7 +41,7 @@ function Text() {
 
     useEffect(() => {
         axios
-            .get('http://117.6.133.148:8089/api/v1/label')
+            .get('https://ptit.io.vn/api/v1/label')
             .then((response) => {
                 console.log(response.data.body);
                 setPosts(response.data.body);
@@ -125,7 +125,7 @@ function Text() {
            </div>
             <div className="barDown">
                 <div className="barDown-items">
-                    <a href="/Video" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Video"} className="nonActive-icon">
                         <i>
                         <FontAwesomeIcon icon={faHand} />
                         </i>
@@ -133,7 +133,7 @@ function Text() {
                         Translate
                         </div>
                     </a>
-                    <a href="/Text" className="active-icon">
+                    <a href={process.env.PUBLIC_URL + "/Text"} className="active-icon">
                     <i>
                         <FontAwesomeIcon icon={faSearch} />
                         </i>
@@ -141,7 +141,7 @@ function Text() {
                         Search
                         </div>
                     </a>
-                    <a href="/Lesson" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Lesson"} className="nonActive-icon">
                     <i>
                         <FontAwesomeIcon icon={faBook} />
                         </i>
@@ -151,7 +151,7 @@ function Text() {
 
                     </a>
                     
-                    <a href="/Profile" className="nonActive-icon">
+                    <a href={process.env.PUBLIC_URL + "/Profile"} className="nonActive-icon">
                         <i>
                         <FontAwesomeIcon icon={faGear} />
                         </i>
