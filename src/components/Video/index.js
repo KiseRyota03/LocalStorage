@@ -115,13 +115,13 @@ function Video() {
 
     const handleApi = (e) => {
         e.preventDefault();
-        setState(e.target.files[0]);
         const formData = new FormData();
-        formData.append('file', state);
+        formData.append('file', e.target.files[0]);
         axios.post('https://ptit.io.vn/api/v1/predict', formData).then((response) => {
             console.log(response.data.body);
             setPosts(response.data.body.prediction[0]);
         });
+        setState(e.target.files[0]);
     };
 
     return (
