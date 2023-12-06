@@ -64,7 +64,9 @@ function Text() {
             <div id='content-list'> 
             {
                 posts.filter((post) => {
-                    return search.toLowerCase() === '' ? post : post.labelVn.includes(search)
+                    return search.toLowerCase() === '' ? post :
+                        (post.labelVn.toLowerCase().includes(search.toLowerCase())
+                            || post.labelEn.toLowerCase().includes(search.toLowerCase()))
                 }).map((post) => {
                     if (lan == 1) {
                         return (

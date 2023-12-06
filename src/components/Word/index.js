@@ -65,6 +65,24 @@ function Word() {
         setCapturing(false);
     }, [mediaRecorderRef, setCapturing]);
 
+    useEffect(() => {
+        if (recordedChunks.length) {
+            console.log('detected end record ', recordedChunks.length)
+            const blob = new Blob(recordedChunks, {
+                type: 'video/webm',
+            });
+            const formData = new FormData();
+            blob.lastModifiedDate = new Date();
+            blob.name = 'data.webm';
+            formData.append('file', blob);
+            axios.post('https://ptit.io.vn/api/v1/predict', formData).then((response) => {
+                console.log(response.data.body);
+                setPosts(response.data.body.prediction[0]);
+            });
+            setRecordedChunks([]);
+        }
+    }, [recordedChunks])
+
     const handleDownload = useCallback(() => {
         if (recordedChunks.length) {
             const blob = new Blob(recordedChunks, {
